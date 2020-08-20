@@ -22,7 +22,7 @@ body {
   line-height: 1.2;
 }
 
-h1, h2, h3, h4, h5, h6, p {
+h1, h2, h3, h4, h5, h6 {
   font-family: 'Ubuntu', sans-serif;
   margin: 0;
 }

@@ -16,13 +16,14 @@ html, body, #root {
 }
 
 body {
-  background: ${(props) => props.theme.colors.secondary};
-  color: ${(props) => props.theme.colors.tertiary};
+  background: ${(props) => props.theme.colors.tertiary};
+  color: ${(props) => props.theme.colors.secondary};
   font-family: 'Roboto', sans-serif;
   line-height: 1.2;
 }
 
 h1, h2, h3, h4, h5, h6, p {
+  font-family: 'Ubuntu', sans-serif;
   margin: 0;
 }
 
@@ -38,9 +39,10 @@ li {
 }
 
 button {
+  font-family: 'Roboto', sans-serif;
   border: none;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   cursor: pointer;
 }
 
@@ -48,7 +50,7 @@ button:focus {
   outline: none;
 }
 
-div, section, article, footer, #root {
+#root {
   display: flex;
   flex-direction: column;
   align-items: center;

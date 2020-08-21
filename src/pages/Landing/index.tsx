@@ -1,10 +1,11 @@
 import React from 'react';
-import { FiMenu, FiInstagram, FiLinkedin } from 'react-icons/fi';
-import { AiOutlineWhatsApp } from 'react-icons/ai';
+import { FiMenu, FiInstagram, FiLinkedin, FiX } from 'react-icons/fi';
+import { ImWhatsapp } from 'react-icons/im';
 
 import Button from '../../components/Button';
 
 import logo from '../../assets/images/logoBlack.svg';
+import logoWhite from '../../assets/images/logoWhite.svg';
 import backgroundFirstFold from '../../assets/images/backgroundFirstFold.jpg';
 
 import {
@@ -20,15 +21,35 @@ import {
   ListSocialMedia,
   SocialMedia,
   LinkExternal,
+  Menu,
+  MenuHeader,
+  MenuWrapper,
+  MenuLink,
 } from './styled';
 
 function Landing() {
+  function handleToggleMenu() {
+    document.getElementById('menu')?.classList.toggle('open');
+  }
+
   return (
     <>
       <FirstFold background={backgroundFirstFold}>
         <Header>
+          <MenuWrapper id="menu">
+            <MenuHeader>
+              <img src={logoWhite} alt="Logo da Thomaz Language Platform" />
+              <FiX size={48} onClick={handleToggleMenu} />
+            </MenuHeader>
+            <Menu>
+              <MenuLink>Sobre o Presencial</MenuLink>
+              <MenuLink>Sobre o Online</MenuLink>
+              <MenuLink>Cadastre-se</MenuLink>
+              <MenuLink>Login</MenuLink>
+            </Menu>
+          </MenuWrapper>
           <img src={logo} alt="Logo da Thomaz Language Platform" />
-          <FiMenu size={44} />
+          <FiMenu size={44} onClick={handleToggleMenu} />
         </Header>
         <TitleApresentation>
           THINK BEFORE YOU SPEAK. <br />
@@ -63,7 +84,7 @@ function Landing() {
                 href="https://api.whatsapp.com/send?phone="
                 title="Entre em contato pelo whatsapp"
               >
-                <AiOutlineWhatsApp size={52} />
+                <ImWhatsapp size={52} />
               </LinkExternal>
             </SocialMedia>
             <SocialMedia>

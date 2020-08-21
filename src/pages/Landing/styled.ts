@@ -14,9 +14,12 @@ export const Header = styled.header`
 
 export const FirstFold = styled.div<FirstFoldProps>`
   height: 100vh;
-  background-image: url('${({ background }) => background}');
+  width: 100%;
+  background: url('${({ background }) => background}') no-repeat center 48%;
+  background-size: cover;
   display: grid;
   grid-template-rows: auto auto 1fr;
+  grid-template-columns: 1fr;
   justify-content: center;
   align-items: center;
 `;
@@ -59,3 +62,23 @@ export const Description = styled.p`
   font-weight: 400;
   margin-bottom: 24px;
 `;
+
+export const Footer = styled.footer`
+  height: 164px;
+  background: ${(props) => props.theme.colors.secondary};
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+`;
+
+export const ListSocialMedia = styled.ul`
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  margin-bottom: 16px;
+`;
+
+export const SocialMedia = styled.li``;
+
+export const LinkExternal = styled.a``;

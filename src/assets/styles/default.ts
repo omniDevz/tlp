@@ -16,8 +16,6 @@ html, body, #root {
 }
 
 body {
-  background: ${(props) => props.theme.colors.tertiary};
-  color: ${(props) => props.theme.colors.secondary};
   font-family: 'Roboto', sans-serif;
   line-height: 1.2;
 }

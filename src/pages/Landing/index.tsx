@@ -1,8 +1,7 @@
 import React from 'react';
 
-import Header from '../../components/Header';
 import Button from '../../components/Button';
-import Footer from '../../components/Footer';
+import PageDefault from '../../components/PageDefault';
 
 import backgroundFirstFold from '../../assets/images/backgroundFirstFold.jpg';
 
@@ -18,8 +17,7 @@ import {
 
 function Landing() {
   return (
-    <>
-      <Header />
+    <PageDefault>
       <FirstFold background={backgroundFirstFold}>
         <TitleApresentation>
           THINK BEFORE YOU SPEAK. <br />
@@ -47,8 +45,7 @@ function Landing() {
           <Button typeButton={'primary'}>Saiba mais</Button>
         </Article>
       </Section>
-      <Footer />
-    </>
+    </PageDefault>
   );
 }
 

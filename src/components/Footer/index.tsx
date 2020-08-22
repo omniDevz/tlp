@@ -21,7 +21,7 @@ const Footer: React.FC = () => {
             href="https://api.whatsapp.com/send?phone="
             title="Entre em contato pelo whatsapp"
           >
-            <ImWhatsapp size={52} />
+            <ImWhatsapp size={40} />
           </LinkExternal>
         </SocialMedia>
         <SocialMedia>
@@ -30,12 +30,12 @@ const Footer: React.FC = () => {
             href="#"
             title="Siga a gente no instagram"
           >
-            <FiInstagram size={52} />
+            <FiInstagram size={40} />
           </LinkExternal>
         </SocialMedia>
         <SocialMedia>
           <LinkExternal target="_blank" href="#" title="Conecte pelo linkedIn">
-            <FiLinkedin size={52} />
+            <FiLinkedin size={40} />
           </LinkExternal>
         </SocialMedia>
       </ListSocialMedia>

@@ -60,7 +60,7 @@ export const Menu = styled.ul`
 export const MenuLink = styled.li`
   border: 2px solid ${(props) => props.theme.colors.tertiary};
   font-size: 2.4rem;
-  font-weight: 700;
+  font-weight: 500;
   text-align: center;
   padding: 12px 16px;
   margin-bottom: 16px;
@@ -73,5 +73,9 @@ export const MenuLink = styled.li`
     left: 0;
     right: 0;
     bottom: 0;
+  }
+
+  a {
+    font-size: inherit;
   }
 `;

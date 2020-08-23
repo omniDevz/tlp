@@ -36,6 +36,11 @@ li {
   list-style: none;
 }
 
+fieldset {
+  border: none;
+  padding: 0;
+}
+
 button {
   font-family: 'Roboto', sans-serif;
   border: none;
@@ -53,5 +58,6 @@ button:focus {
   flex-direction: column;
   align-items: center;
 }
+
 
 `;

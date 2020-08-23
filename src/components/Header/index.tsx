@@ -28,8 +28,22 @@ const Header: React.FC = () => {
           <FiX size={48} onClick={handleToggleMenu} />
         </MenuHeader>
         <Menu>
-          <MenuLink>Sobre o Presencial</MenuLink>
-          <MenuLink>Sobre o Online</MenuLink>
+          <MenuLink>
+            <Link
+              to="/AboutPresential"
+              title="Mais detalhes sobre a metodologia presencial"
+            >
+              Sobre o presencial
+            </Link>
+          </MenuLink>
+          <MenuLink>
+            <Link
+              to="/AboutOnline"
+              title="Mais detalhes sobre a metodolia online"
+            >
+              Sobre o online
+            </Link>
+          </MenuLink>
           <MenuLink>Cadastre-se</MenuLink>
           <MenuLink>Login</MenuLink>
         </Menu>

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { ButtonStyled } from '../../components/Button/styled';
+import { ButtonStyled } from '../../components/ButtonLink/styled';
 
 import { FirstFoldProps } from './interface';
 
@@ -26,7 +26,7 @@ export const TitleApresentation = styled.h2`
 `;
 
 export const ButtonApresentation = styled(ButtonStyled)`
-  transform: translateY(245%);
+  transform: translateY(505%);
 `;
 
 export const Section = styled.section`

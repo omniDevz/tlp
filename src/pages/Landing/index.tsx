@@ -39,7 +39,7 @@ function Landing() {
             direta e objetiva
           </Description>
           <ButtonLink
-            to="#"
+            to="/aboutPresential"
             title="Saiba mais sobre a metodologia presencial"
             typeButton={'primary'}
           >

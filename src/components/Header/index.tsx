@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 import { FiMenu, FiX } from 'react-icons/fi';
 
 import logo from '../../assets/images/logoBlack.svg';
@@ -22,7 +22,9 @@ const Header: React.FC = () => {
     <HeaderWrapper>
       <MenuWrapper id="menu">
         <MenuHeader>
-          <img src={logoWhite} alt="Logo da Thomaz Language Platform" />
+          <Link to="/" title="Ir para a página inicial">
+            <img src={logoWhite} alt="Logo da Thomaz Language Platform" />
+          </Link>
           <FiX size={48} onClick={handleToggleMenu} />
         </MenuHeader>
         <Menu>
@@ -32,7 +34,9 @@ const Header: React.FC = () => {
           <MenuLink>Login</MenuLink>
         </Menu>
       </MenuWrapper>
-      <img src={logo} alt="Logo da Thomaz Language Platform" />
+      <Link to="/" title="Ir para a página inicial">
+        <img src={logo} alt="Logo da Thomaz Language Platform" />
+      </Link>
       <FiMenu size={44} onClick={handleToggleMenu} />
     </HeaderWrapper>
   );

@@ -8,6 +8,7 @@ export const FooterWrapper = styled.footer`
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
+  margin-top: -1px;
 `;
 
 export const ListSocialMedia = styled.ul`

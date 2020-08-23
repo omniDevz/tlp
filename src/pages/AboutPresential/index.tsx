@@ -1,13 +1,7 @@
 import React from 'react';
-import {
-  MdBook,
-  MdDescription,
-  MdVoiceChat,
-  MdCameraRoll,
-  MdPlayArrow,
-} from 'react-icons/md';
-import ButtonLink from '../../components/ButtonLink';
+import { MdNewReleases, MdLiveHelp, MdPlayArrow } from 'react-icons/md';
 
+import ButtonLink from '../../components/ButtonLink';
 import PageDefault from '../../components/PageDefault';
 
 import {
@@ -21,26 +15,18 @@ import {
   Description,
 } from './styled';
 
-function AboutOnline() {
+function AboutPresential() {
   return (
     <PageDefault>
-      <Title>Sobre o online</Title>
+      <Title>Sobre o presencial</Title>
       <SkillsWrapper>
         <Skill>
-          <MdBook />
-          Recomendações de livros
+          <MdNewReleases />
+          Direto e objetivo
         </Skill>
         <Skill>
-          <MdDescription />
-          Artigos
-        </Skill>
-        <Skill>
-          <MdVoiceChat />
-          Lives exclusivas
-        </Skill>
-        <Skill>
-          <MdCameraRoll />
-          Cursos para cada perfil
+          <MdLiveHelp />
+          Descobrimos e sanamos suas falhas
         </Skill>
       </SkillsWrapper>
       <MethodologyWrapper>
@@ -66,4 +52,4 @@ function AboutOnline() {
   );
 }
 
-export default AboutOnline;
+export default AboutPresential;

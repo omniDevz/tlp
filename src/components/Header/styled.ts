@@ -62,7 +62,6 @@ export const MenuLink = styled.li`
   font-size: 2.4rem;
   font-weight: 500;
   text-align: center;
-  padding: 12px 16px;
   margin-bottom: 16px;
 
   &:last-child {
@@ -77,5 +76,7 @@ export const MenuLink = styled.li`
 
   a {
     font-size: inherit;
+    padding: 12px 16px;
+    display: block;
   }
 `;

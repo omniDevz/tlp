@@ -50,6 +50,7 @@ export const ButtonWrapper = styled.div`
   display: flex;
   column-gap: 16px;
   margin-bottom: 16px;
+  justify-content: flex-end;
 `;
 
 export const Button = styled(ButtonStyled)`

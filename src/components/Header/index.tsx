@@ -30,7 +30,7 @@ const Header: React.FC = () => {
         <Menu>
           <MenuLink>
             <Link
-              to="/AboutPresential"
+              to="/aboutPresential"
               title="Mais detalhes sobre a metodologia presencial"
             >
               Sobre o presencial
@@ -38,14 +38,25 @@ const Header: React.FC = () => {
           </MenuLink>
           <MenuLink>
             <Link
-              to="/AboutOnline"
+              to="/aboutOnline"
               title="Mais detalhes sobre a metodolia online"
             >
               Sobre o online
             </Link>
           </MenuLink>
-          <MenuLink>Cadastre-se</MenuLink>
-          <MenuLink>Login</MenuLink>
+          <MenuLink>
+            <Link
+              to="/newRegister"
+              title="Cadastre-se agora mesmo na plataforma"
+            >
+              Cadastre-se
+            </Link>
+          </MenuLink>
+          <MenuLink>
+            <Link to="/login" title="Entre agora mesmo na plataforma">
+              Login
+            </Link>
+          </MenuLink>
         </Menu>
       </MenuWrapper>
       <Link to="/" title="Ir para a página inicial">

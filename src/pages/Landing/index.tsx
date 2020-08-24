@@ -34,7 +34,7 @@ function Landing() {
       <Section>
         <Article>
           <TitleSection>Presencial</TitleSection>
-          <Description>
+          <Description lang="en">
             Entenda a solução de seus problemas relacionado ao inglês de forma
             direta e objetiva
           </Description>

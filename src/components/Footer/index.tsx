@@ -39,7 +39,9 @@ const Footer: React.FC = () => {
           </LinkExternal>
         </SocialMedia>
       </ListSocialMedia>
-      <Description>&copy;copyright {new Date().getFullYear()}</Description>
+      <Description lang="en">
+        &copy;copyright {new Date().getFullYear()}
+      </Description>
     </FooterWrapper>
   );
 };

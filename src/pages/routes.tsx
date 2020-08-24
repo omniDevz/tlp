@@ -6,6 +6,7 @@ import Landing from './Landing';
 import AboutOnline from './AboutOnline';
 import AboutPresential from './AboutPresential';
 import NewRegister from './NewRegister';
+import NotFound from './NotFound';
 
 function Routes() {
   return (
@@ -15,7 +16,7 @@ function Routes() {
         <Route path="/aboutOnline" component={AboutOnline} />
         <Route path="/aboutPresential" component={AboutPresential} />
         <Route path="/newRegister" component={NewRegister} />
-        <Route component={() => <div>Page Not source 404</div>} />
+        <Route component={NotFound} />
       </Switch>
     </BrowserRouter>
   );

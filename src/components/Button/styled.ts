@@ -11,18 +11,18 @@ export const ButtonStyled = styled.button<ButtonProps>`
   margin: 0 auto;
 
   ${(props) => {
-    if (props.typeButton === 'primary')
+    if (props.typebutton === 'primary')
       return css`
         background: ${(props) => props.theme.colors.primary};
         color: ${(props) => props.theme.colors.tertiary};
       `;
-    else if (props.typeButton === 'primary-outline')
+    else if (props.typebutton === 'primary-outline')
       return css`
         background: transparent;
         border: 2px solid ${(props) => props.theme.colors.primary};
         color: ${(props) => props.theme.colors.primary};
       `;
-    else if (props.typeButton === 'secondary')
+    else if (props.typebutton === 'secondary')
       return css`
         background: ${(props) => props.theme.colors.secondary};
         color: ${(props) => props.theme.colors.tertiary};

@@ -8,10 +8,10 @@ const ButtonLink: React.FC<ButtonProps> = ({
   to,
   title,
   children,
-  typeButton,
+  typebutton,
 }) => {
   return (
-    <ButtonStyled to={to} title={title} typeButton={typeButton}>
+    <ButtonStyled to={to} title={title} typebutton={typebutton}>
       {children}
     </ButtonStyled>
   );

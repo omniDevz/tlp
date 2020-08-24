@@ -4,9 +4,9 @@ import { ButtonStyled } from './styled';
 
 import { ButtonProps } from './interface';
 
-const Button: React.FC<ButtonProps> = ({ children, typeButton, onClick }) => {
+const Button: React.FC<ButtonProps> = ({ children, typebutton, onClick }) => {
   return (
-    <ButtonStyled type="button" onClick={onClick} typeButton={typeButton}>
+    <ButtonStyled type="button" onClick={onClick} typebutton={typebutton}>
       {children}
     </ButtonStyled>
   );

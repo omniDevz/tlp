@@ -57,11 +57,11 @@ const StepOne: React.FC<StepOneProps> = ({
       <ButtonWrapper>
         <Button
           onClick={() => handleStep('one', 'home')}
-          typeButton="primary-outline"
+          typebutton="primary-outline"
         >
           Cancelar
         </Button>
-        <Button onClick={() => handleStep('one', 'two')} typeButton="primary">
+        <Button onClick={() => handleStep('one', 'two')} typebutton="primary">
           Continuar
         </Button>
       </ButtonWrapper>

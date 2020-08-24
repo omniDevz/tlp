@@ -6,7 +6,7 @@ import { ButtonProps } from './interface';
 
 const Button: React.FC<ButtonProps> = ({ children, typeButton, onClick }) => {
   return (
-    <ButtonStyled onClick={onClick} typeButton={typeButton}>
+    <ButtonStyled type="button" onClick={onClick} typeButton={typeButton}>
       {children}
     </ButtonStyled>
   );

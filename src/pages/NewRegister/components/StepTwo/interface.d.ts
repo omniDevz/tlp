@@ -1,16 +1,14 @@
 import { ChangeEvent } from 'react';
 
-export interface StepOneProps {
+export interface StepTwoProps {
   values: {
-    firstName: string;
-    lastName: string;
-    birthDate: string;
-    email: string;
+    username: string;
+    password: string;
   };
   handleChange: FunctionComponentElement;
   handleStep: function(
-    'one',
-    'home' | 'two'
+    'two',
+    'one' | 'term'
   );
 }
 export interface FormProps {

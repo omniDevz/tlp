@@ -15,9 +15,13 @@ import {
 
 import { StepOneProps } from './interface';
 
-const StepOne: React.FC<StepOneProps> = ({ values, handleChange }) => {
+const StepOne: React.FC<StepOneProps> = ({
+  values,
+  handleChange,
+  handleStep,
+}) => {
   return (
-    <Form background={backgroundNewRegister}>
+    <Form background={backgroundNewRegister} id="stepOne">
       <Fieldset>
         <Legend>Dados Pessoais</Legend>
         <TwoFields>
@@ -51,8 +55,15 @@ const StepOne: React.FC<StepOneProps> = ({ values, handleChange }) => {
         />
       </Fieldset>
       <ButtonWrapper>
-        <Button typeButton="primary-outline">Cancelar</Button>
-        <Button typeButton="primary">Continuar</Button>
+        <Button
+          onClick={() => handleStep('one', 'home')}
+          typeButton="primary-outline"
+        >
+          Cancelar
+        </Button>
+        <Button onClick={() => handleStep('one', 'two')} typeButton="primary">
+          Continuar
+        </Button>
       </ButtonWrapper>
     </Form>
   );

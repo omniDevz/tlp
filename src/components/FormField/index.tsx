@@ -23,6 +23,7 @@ const FormField: React.FC<FormFieldProps> = ({
         name={name}
         onChange={onChange}
         type={typeInput}
+        autoComplete="off"
       />
     </FormFieldWrapper>
   );

@@ -1,3 +1,3 @@
-export interface FormProps {
-  background: string;
+export interface StepProps {
+  step: 'one' | 'two' | 'term';
 }

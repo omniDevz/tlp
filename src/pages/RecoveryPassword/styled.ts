@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { ButtonStyled } from '../../components/Button/styled';
@@ -22,6 +21,7 @@ export const Description = styled.p`
   font-size: 1.6rem;
   display: block;
   text-align: center;
+  margin-bottom: 8px;
 `;
 
 export const Image = styled.img`
@@ -29,7 +29,9 @@ export const Image = styled.img`
 `;
 
 export const Button = styled(ButtonStyled)`
+  margin-top: auto;
   margin-left: auto;
   margin-right: 24px;
+  margin-bottom: 8px;
   width: calc(50% - 12px);
 `;

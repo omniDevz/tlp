@@ -9,7 +9,7 @@ import imgBackground from '../../assets/images/backgroundRecoveryPassword.svg';
 
 import { Title, FieldSetWrapper, Description, Button, Image } from './styled';
 
-function Login() {
+function RecoveryPassword() {
   const valuesInitials = {
     recovery: '',
   };
@@ -36,4 +36,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default RecoveryPassword;

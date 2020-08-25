@@ -9,6 +9,7 @@ import imgBackground from '../../assets/images/backgroundLogin.svg';
 
 import {
   Title,
+  Form,
   FieldSetWrapper,
   LinkRecoveryPassword,
   Button,
@@ -26,24 +27,26 @@ function Login() {
   return (
     <PageDefault>
       <Title>Login</Title>
-      <FieldSetWrapper>
-        <FormField
-          label="Usuário"
-          name="username"
-          value={values.username}
-          onChange={handleChange}
-        />
-        <FormField
-          label="Senha"
-          name="password"
-          value={values.password}
-          onChange={handleChange}
-          type="password"
-        />
-        <LinkRecoveryPassword to="/recoveryPassword" title="Recupere sua senha">
-          Esqueceu a Senha?
-        </LinkRecoveryPassword>
-      </FieldSetWrapper>
+      <Form>
+        <FieldSetWrapper>
+          <FormField
+            label="Usuário"
+            name="username"
+            value={values.username}
+            onChange={handleChange}
+          />
+          <FormField
+            label="Senha"
+            name="password"
+            value={values.password}
+            onChange={handleChange}
+            type="password"
+          />
+        </FieldSetWrapper>
+      </Form>
+      <LinkRecoveryPassword to="/recoveryPassword" title="Recupere sua senha">
+        Esqueceu a Senha?
+      </LinkRecoveryPassword>
       <Image src={imgBackground} alt="" />
       <Button typebutton="primary-outline">Entrar</Button>
     </PageDefault>

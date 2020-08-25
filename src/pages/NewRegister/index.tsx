@@ -120,7 +120,7 @@ function NewRegister() {
         />
       </Steps>
       <ConfirmContainer registerConfirm={registerConfirm}>
-        <Image src={imgConfirm} />
+        <Image src={imgConfirm} alt="" />
       </ConfirmContainer>
     </PageDefault>
   );

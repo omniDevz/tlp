@@ -6,6 +6,7 @@ import Landing from './Landing';
 import AboutOnline from './AboutOnline';
 import AboutPresential from './AboutPresential';
 import NewRegister from './NewRegister';
+import Login from './Login';
 import NotFound from './NotFound';
 
 function Routes() {
@@ -16,6 +17,7 @@ function Routes() {
         <Route path="/aboutOnline" component={AboutOnline} />
         <Route path="/aboutPresential" component={AboutPresential} />
         <Route path="/newRegister" component={NewRegister} />
+        <Route path="/login" component={Login} />
         <Route component={NotFound} />
       </Switch>
     </BrowserRouter>

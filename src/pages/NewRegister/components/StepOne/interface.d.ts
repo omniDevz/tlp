@@ -9,8 +9,8 @@ export interface StepOneProps {
   };
   handleChange: FunctionComponentElement;
   handleStep: function(
-    'one',
-    'home' | 'two'
+    1 | 2 | 3,
+    0 | 1 | 2 | 3
   );
 }
 export interface FormProps {

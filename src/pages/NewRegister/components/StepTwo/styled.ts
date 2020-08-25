@@ -43,6 +43,7 @@ export const Legend = styled.legend`
 
 export const ButtonWrapper = styled.div`
   display: flex;
+  flex-direction: row-reverse;
   column-gap: 16px;
   margin-bottom: 16px;
   justify-content: flex-end;

@@ -21,7 +21,11 @@ const StepTwo: React.FC<StepTwoProps> = ({
   handleStep,
 }) => {
   return (
-    <Form background={backgroundNewRegister} id="stepTwo">
+    <Form
+      background={backgroundNewRegister}
+      id="stepTwo"
+      onSubmit={() => handleStep(2, 3)}
+    >
       <Fieldset>
         <Legend>Dados Pessoais</Legend>
         <TwoFields>
@@ -41,14 +45,11 @@ const StepTwo: React.FC<StepTwoProps> = ({
         </TwoFields>
       </Fieldset>
       <ButtonWrapper>
-        <Button
-          onClick={() => handleStep('two', 'one')}
-          typebutton="primary-outline"
-        >
-          Voltar
-        </Button>
-        <Button onClick={() => handleStep('two', 'term')} typebutton="primary">
+        <Button onClick={() => handleStep(2, 3)} typebutton="primary">
           Continuar
+        </Button>
+        <Button onClick={() => handleStep(2, 1)} typebutton="primary-outline">
+          Voltar
         </Button>
       </ButtonWrapper>
     </Form>

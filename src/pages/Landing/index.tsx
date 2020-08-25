@@ -24,7 +24,7 @@ function Landing() {
           READ BEFORE YOU THINK.
         </TitleApresentation>
         <ButtonApresentation
-          to="#"
+          to="/newRegister"
           title="Cadastre-se na plataforma"
           typebutton="secondary"
         >

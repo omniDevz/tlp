@@ -17,7 +17,7 @@ export const Form = styled.form<FormProps>`
 `;
 
 export const Fieldset = styled.fieldset`
-  flex: 1;
+  max-height: calc(100% - 60px);
 
   > div {
     margin-bottom: 8px;
@@ -28,10 +28,20 @@ export const Fieldset = styled.fieldset`
   }
 `;
 
-export const TwoFields = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  column-gap: 16px;
+export const Description = styled.p`
+  max-height: calc(100% - 70px);
+  font-size: 1.8rem;
+  line-height: 1.25;
+  text-align: justify;
+  overflow-y: auto;
+`;
+
+export const Term = styled.label`
+  color: ${(props) => props.theme.colors.primary};
+  display: block;
+  text-align: right;
+  font-size: 1.2rem;
+  margin-top: 8px;
 `;
 
 export const Legend = styled.legend`

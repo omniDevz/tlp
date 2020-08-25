@@ -4,10 +4,13 @@ import PageDefault from '../../components/PageDefault';
 
 import StepOne from './components/StepOne';
 import StepTwo from './components/StepTwo';
+import StepTree from './components/StepTree';
 
 import useForm from '../../hooks/useForm';
 
-import { Title, Steps } from './styled';
+import imgConfirm from '../../assets/images/confirm.svg';
+
+import { Title, Steps, ConfirmContainer, Image } from './styled';
 
 function NewRegister() {
   const valuesInitials = {
@@ -19,7 +22,8 @@ function NewRegister() {
     password: '',
   };
   const history = useHistory();
-  const [step, setStep] = useState<'one' | 'two' | 'term'>('one');
+  const [step, setStep] = useState<0 | 1 | 2 | 3>(1);
+  const [registerConfirm, setRegisterConfirm] = useState<Boolean>(false);
 
   const { handleChange, values } = useForm(valuesInitials);
 
@@ -44,22 +48,56 @@ function NewRegister() {
     return true;
   }
 
-  function handleStep(
-    step: 'one' | 'two' | 'term',
-    to: 'home' | 'one' | 'two' | 'term'
-  ) {
+  function validationStepTwo() {
+    if (values.username === '') {
+      alert('Preencha o nome de usuário');
+      return false;
+    }
+    if (values.password === '') {
+      alert('Preencha a senha do usuário');
+      return false;
+    }
+
+    return true;
+  }
+
+  function handleStep(step: 1 | 2 | 3, to: 0 | 1 | 2 | 3) {
     switch (step) {
-      case 'one':
-        if (to === 'home') {
+      case 1:
+        if (to === 0) {
           history.push('/');
           return null;
         }
 
         if (!validationStepOne()) return null;
 
-        setStep('two');
+        setStep(2);
+        break;
+
+      case 2:
+        if (to === 1) {
+          setStep(1);
+          return null;
+        }
+
+        if (!validationStepTwo()) return null;
+
+        setStep(3);
+        break;
+
+      case 3:
+        setStep(2);
         break;
     }
+  }
+
+  function handleConfirmRegister() {
+    setRegisterConfirm(true);
+
+    setTimeout(() => {
+      setRegisterConfirm(false);
+      history.push('/');
+    }, 2200);
   }
 
   return (
@@ -76,7 +114,14 @@ function NewRegister() {
           handleChange={handleChange}
           values={values}
         />
+        <StepTree
+          handleStep={handleStep}
+          handleConfirmRegister={handleConfirmRegister}
+        />
       </Steps>
+      <ConfirmContainer registerConfirm={registerConfirm}>
+        <Image src={imgConfirm} />
+      </ConfirmContainer>
     </PageDefault>
   );
 }

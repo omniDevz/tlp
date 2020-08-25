@@ -1,3 +1,7 @@
 export interface StepProps {
-  step: 'one' | 'two' | 'term';
+  step: 0 | 1 | 2 | 3;
+}
+
+export interface ConfirmContainerProps {
+  registerConfirm: Boolean;
 }

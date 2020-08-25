@@ -26,7 +26,7 @@ function Landing() {
         <ButtonApresentation
           to="/newRegister"
           title="Cadastre-se na plataforma"
-          typebutton="secondary"
+          typeButton="secondary"
         >
           Cadastre-se
         </ButtonApresentation>
@@ -41,7 +41,7 @@ function Landing() {
           <ButtonLink
             to="/aboutPresential"
             title="Saiba mais sobre a metodologia presencial"
-            typebutton="primary"
+            typeButton="primary"
           >
             Saiba mais
           </ButtonLink>
@@ -55,7 +55,7 @@ function Landing() {
           <ButtonLink
             to="/aboutOnline"
             title="Saiba mais sobre a metodologia online"
-            typebutton="primary"
+            typeButton="primary"
           >
             Saiba mais
           </ButtonLink>

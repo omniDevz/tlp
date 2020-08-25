@@ -31,7 +31,7 @@ function RecoveryPassword() {
         </Description>
       </FieldSetWrapper>
       <Image src={imgBackground} alt="" />
-      <Button typebutton="primary-outline">Enviar</Button>
+      <Button typeButton="primary-outline">Enviar</Button>
     </PageDefault>
   );
 }

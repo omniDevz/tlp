@@ -36,10 +36,10 @@ const StepTree: React.FC<StepTreeProps> = ({
         <Term>Finalizando o cadastro você estará aceitando o termo *</Term>
       </Fieldset>
       <ButtonWrapper>
-        <Button onClick={handleConfirmRegister} typebutton="primary">
+        <Button onClick={handleConfirmRegister} typeButton="primary">
           Finalizar
         </Button>
-        <Button onClick={() => handleStep(3, 2)} typebutton="primary-outline">
+        <Button onClick={() => handleStep(3, 2)} typeButton="primary-outline">
           Voltar
         </Button>
       </ButtonWrapper>

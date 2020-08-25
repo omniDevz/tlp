@@ -48,7 +48,7 @@ function Login() {
         Esqueceu a Senha?
       </LinkRecoveryPassword>
       <Image src={imgBackground} alt="" />
-      <Button typebutton="primary-outline">Entrar</Button>
+      <Button typeButton="primary-outline">Entrar</Button>
     </PageDefault>
   );
 }

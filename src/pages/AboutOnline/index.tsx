@@ -56,7 +56,7 @@ function AboutOnline() {
           <ButtonLink
             to="#"
             title="Cadastre-se agora mesmo na plataforma"
-            typebutton="primary"
+            typeButton="primary"
           >
             Cadastre-se
           </ButtonLink>

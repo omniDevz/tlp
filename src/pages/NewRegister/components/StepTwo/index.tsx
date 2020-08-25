@@ -45,10 +45,10 @@ const StepTwo: React.FC<StepTwoProps> = ({
         </TwoFields>
       </Fieldset>
       <ButtonWrapper>
-        <Button onClick={() => handleStep(2, 3)} typebutton="primary">
+        <Button onClick={() => handleStep(2, 3)} typeButton="primary">
           Continuar
         </Button>
-        <Button onClick={() => handleStep(2, 1)} typebutton="primary-outline">
+        <Button onClick={() => handleStep(2, 1)} typeButton="primary-outline">
           Voltar
         </Button>
       </ButtonWrapper>

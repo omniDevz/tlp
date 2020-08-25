@@ -33,7 +33,7 @@ const StepTree: React.FC<StepTreeProps> = ({
           more recently with desktop publishing software like Aldus PageMaker
           including versions of Lorem Ipsum
         </Description>
-        <Term>Finalinando o cadastro você estará aceitando o termo *</Term>
+        <Term>Finalizando o cadastro você estará aceitando o termo *</Term>
       </Fieldset>
       <ButtonWrapper>
         <Button onClick={handleConfirmRegister} typebutton="primary">

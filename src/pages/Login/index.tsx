@@ -40,7 +40,7 @@ function Login() {
           onChange={handleChange}
           type="password"
         />
-        <LinkRecoveryPassword to="#" title="Recupere sua senha">
+        <LinkRecoveryPassword to="/recoveryPassword" title="Recupere sua senha">
           Esqueceu a Senha?
         </LinkRecoveryPassword>
       </FieldSetWrapper>

@@ -46,7 +46,14 @@ export const ButtonWrapper = styled.div`
   flex-direction: row-reverse;
   column-gap: 16px;
   margin-bottom: 16px;
-  justify-content: flex-end;
+  justify-content: flex-start;
+
+  @media (min-width: 700px) {
+    button {
+      margin-right: 24px;
+      margin-left: 0;
+    }
+  }
 `;
 
 export const Button = styled(ButtonStyled)`

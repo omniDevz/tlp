@@ -54,7 +54,7 @@ function AboutOnline() {
             direta e objetiva
           </Description>
           <ButtonLink
-            to="#"
+            to="/newRegister"
             title="Cadastre-se agora mesmo na plataforma"
             color="primary"
           >

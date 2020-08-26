@@ -7,7 +7,7 @@ import backgroundFirstFold from '../../assets/images/backgroundFirstFold.jpg';
 
 import {
   FirstFold,
-  TitleApresentation,
+  TitlePresentation,
   Section,
   Article,
   TitleSection,
@@ -18,10 +18,10 @@ function Landing() {
   return (
     <PageDefault>
       <FirstFold background={backgroundFirstFold}>
-        <TitleApresentation>
+        <TitlePresentation>
           THINK BEFORE YOU SPEAK. <br />
           READ BEFORE YOU THINK.
-        </TitleApresentation>
+        </TitlePresentation>
         <ButtonLink
           to="/newRegister"
           title="Cadastre-se na plataforma"

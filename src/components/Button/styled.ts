@@ -32,7 +32,7 @@ export const ButtonStyled = styled.button<ButtonProps>`
   }}
 
   &:hover {
-    transform: scale(1.08);
+    transform: scale(0.96);
   }
 
   @media (min-width: 700px) {

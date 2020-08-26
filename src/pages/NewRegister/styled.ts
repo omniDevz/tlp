@@ -12,6 +12,7 @@ export const Steps = styled.section<StepProps>`
   display: flex;
   position: relative;
   transition: all 320ms ease-in-out;
+  min-height: 240px;
 
   ${({ step }) => css`
     form {

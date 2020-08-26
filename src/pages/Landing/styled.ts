@@ -15,7 +15,7 @@ export const FirstFold = styled.div<FirstFoldProps>`
   padding-top: 127px;
 `;
 
-export const TitleApresentation = styled.h2`
+export const TitlePresentation = styled.h2`
   font-size: 3.2rem;
   font-weight: 700;
   text-align: center;
@@ -48,7 +48,7 @@ export const Article = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 260px;
+  height: 26rem;
   padding: 24px;
 `;
 

@@ -19,7 +19,7 @@ export const Label = styled.label`
 
 export const Input = styled.input`
   width: 100%;
-  height: 32px;
+  height: 3.2rem;
   border: 2px solid ${(props) => props.theme.colors.secondary};
   background: ${(props) => props.theme.colors.tertiary};
   padding: 0 14px;
@@ -56,13 +56,13 @@ export const FormFieldWrapper = styled.div<FormFieldWrapperProps>`
       }
     `}
 
-    &:focus-within ${Label} {
-      transform: scale(0.32);
-      transform-origin: left;
-      top: -60%;
-      left: 16px;
-      font-size: 32px;
-      padding: 0 16px;
-      white-space: nowrap;
-    }
+  &:focus-within ${Label} {
+    transform: scale(0.32);
+    transform-origin: left;
+    top: -60%;
+    left: 16px;
+    font-size: 32px;
+    padding: 0 16px;
+    white-space: nowrap;
+  }
 `;

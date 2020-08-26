@@ -34,6 +34,10 @@ export const Description = styled.p`
   line-height: 1.25;
   text-align: justify;
   overflow-y: auto;
+
+  @media (min-width: 700px) {
+    max-height: auto;
+  }
 `;
 
 export const Term = styled.label`
@@ -42,6 +46,10 @@ export const Term = styled.label`
   text-align: right;
   font-size: 1.2rem;
   margin-top: 8px;
+
+  @media (min-width: 700px) {
+    margin-bottom: 32px;
+  }
 `;
 
 export const Legend = styled.legend`
@@ -56,7 +64,16 @@ export const ButtonWrapper = styled.div`
   flex-direction: row-reverse;
   column-gap: 16px;
   margin-bottom: 16px;
-  justify-content: flex-end;
+  justify-content: flex-start;
+
+  @media (min-width: 700px) {
+    margin-top: auto;
+
+    button {
+      margin-right: 24px;
+      margin-left: 0;
+    }
+  }
 `;
 
 export const Button = styled(ButtonStyled)`

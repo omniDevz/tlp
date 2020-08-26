@@ -28,4 +28,8 @@ export const ButtonStyled = styled(Link)<ButtonProps>`
   &:hover {
     transform: scale(0.97);
   }
+
+  @media (min-width: 700px) {
+    width: 24rem;
+  }
 `;

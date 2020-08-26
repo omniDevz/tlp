@@ -69,4 +69,14 @@ button:focus {
     line-height: 1.32;
   }
 }
+
+@media (min-width: 2540px) {
+  :root {
+    font-size: 125%;
+  }
+
+  body {
+    line-height: 1.64;
+  }
+}
 `;

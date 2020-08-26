@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Title = styled.h2`
   width: 100%;
-  padding-top: 132px;
+  padding-top: 13rem;
   font-size: 3.2rem;
   font-weight: 700;
   text-align: center;
@@ -36,6 +36,7 @@ export const MethodologyWrapper = styled.section`
   background: ${(props) => props.theme.colors.secondary};
   padding: 24px;
   padding-bottom: 0;
+  flex: 1;
 `;
 
 export const Video = styled.article`

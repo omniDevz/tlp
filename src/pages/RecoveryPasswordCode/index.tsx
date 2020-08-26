@@ -31,7 +31,7 @@ function RecoveryPasswordCode() {
         </ReSendEmail>
       </FieldSetWrapper>
       <Image src={imgBackground} alt="" />
-      <Button typeButton="primary-outline">Continuar</Button>
+      <Button color="primary-outline">Continuar</Button>
     </PageDefault>
   );
 }

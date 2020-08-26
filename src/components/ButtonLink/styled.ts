@@ -9,17 +9,23 @@ export const ButtonStyled = styled(Link)<ButtonProps>`
   font-size: 1.8rem;
   font-weight: 500;
   margin: 0 auto;
+  transform: scale(1);
+  transition: all 260ms ease-in-out;
 
   ${(props) => {
-    if (props.typeButton === 'primary')
+    if (props.color === 'primary')
       return css`
         background: ${(props) => props.theme.colors.primary};
         color: ${(props) => props.theme.colors.tertiary};
       `;
-    else if (props.typeButton === 'secondary')
+    else if (props.color === 'secondary')
       return css`
         background: ${(props) => props.theme.colors.secondary};
         color: ${(props) => props.theme.colors.tertiary};
       `;
   }}
+
+  &:hover {
+    transform: scale(0.97);
+  }
 `;

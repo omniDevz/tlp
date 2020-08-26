@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import { ButtonStyled } from '../../components/ButtonLink/styled';
-
 import { FirstFoldProps } from './interface';
 
 export const FirstFold = styled.div<FirstFoldProps>`
@@ -10,7 +8,7 @@ export const FirstFold = styled.div<FirstFoldProps>`
   background: url('${({ background }) => background}') no-repeat center 48%;
   background-size: cover;
   display: grid;
-  grid-template-rows: auto auto 1fr;
+  grid-template-rows: auto 1fr;
   grid-template-columns: 1fr;
   justify-content: center;
   align-items: center;
@@ -23,15 +21,27 @@ export const TitleApresentation = styled.h2`
   text-align: center;
   padding: 24px;
   text-transform: uppercase;
-`;
 
-export const ButtonApresentation = styled(ButtonStyled)`
-  transform: translateY(505%);
+  @media (min-width: 700px) {
+    margin-top: 3.2rem;
+    font-size: 4.2rem;
+    line-height: 2;
+  }
 `;
 
 export const Section = styled.section`
   background: ${(props) => props.theme.colors.secondary};
   width: 100%;
+  padding: 2.4rem 0.8rem;
+
+  @media (min-width: 700px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    article:last-child {
+      border-left: 1px solid ${(props) => props.theme.colors.tertiary};
+    }
+  }
 `;
 
 export const Article = styled.article`

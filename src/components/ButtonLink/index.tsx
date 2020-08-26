@@ -4,14 +4,9 @@ import { ButtonStyled } from './styled';
 
 import { ButtonProps } from './interface';
 
-const ButtonLink: React.FC<ButtonProps> = ({
-  to,
-  title,
-  children,
-  typeButton,
-}) => {
+const ButtonLink: React.FC<ButtonProps> = ({ to, title, children, color }) => {
   return (
-    <ButtonStyled to={to} title={title} typeButton={typeButton}>
+    <ButtonStyled to={to} title={title} color={color}>
       {children}
     </ButtonStyled>
   );

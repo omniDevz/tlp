@@ -9,23 +9,33 @@ export const ButtonStyled = styled.button<ButtonProps>`
   font-size: 1.8rem;
   font-weight: 500;
   margin: 0 auto;
+  transform: scale(1);
+  transition: all 260ms ease-in-out;
 
   ${(props) => {
-    if (props.typeButton === 'primary')
+    if (props.color === 'primary')
       return css`
         background: ${(props) => props.theme.colors.primary};
         color: ${(props) => props.theme.colors.tertiary};
       `;
-    else if (props.typeButton === 'primary-outline')
+    else if (props.color === 'primary-outline')
       return css`
         background: transparent;
         border: 2px solid ${(props) => props.theme.colors.primary};
         color: ${(props) => props.theme.colors.primary};
       `;
-    else if (props.typeButton === 'secondary')
+    else if (props.color === 'secondary')
       return css`
         background: ${(props) => props.theme.colors.secondary};
         color: ${(props) => props.theme.colors.tertiary};
       `;
   }}
+
+  &:hover {
+    transform: scale(1.08);
+  }
+
+  @media (min-width: 700px) {
+    max-width: 24rem;
+  }
 `;

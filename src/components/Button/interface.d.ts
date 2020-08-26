@@ -1,4 +1,4 @@
 export interface ButtonProps {
-  typeButton: 'primary' | 'primary-outline' | 'secondary';
+  color: 'primary' | 'primary-outline' | 'secondary';
   onClick?: function();
 }

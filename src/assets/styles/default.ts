@@ -60,5 +60,13 @@ button:focus {
   align-items: center;
 }
 
+@media (min-width: 1440px) {
+  :root {
+    font-size: 100%;
+  }
 
+  body {
+    line-height: 1.32;
+  }
+}
 `;

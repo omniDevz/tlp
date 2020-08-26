@@ -39,7 +39,7 @@ function RecoveryPasswordNew() {
         </FieldSetWrapper>
       </Form>
       <Image src={imgBackground} alt="" />
-      <Button typeButton="primary-outline">Salvar</Button>
+      <Button color="primary-outline">Salvar</Button>
     </PageDefault>
   );
 }

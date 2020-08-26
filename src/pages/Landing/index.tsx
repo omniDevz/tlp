@@ -6,7 +6,6 @@ import PageDefault from '../../components/PageDefault';
 import backgroundFirstFold from '../../assets/images/backgroundFirstFold.jpg';
 
 import {
-  ButtonApresentation,
   FirstFold,
   TitleApresentation,
   Section,
@@ -23,13 +22,13 @@ function Landing() {
           THINK BEFORE YOU SPEAK. <br />
           READ BEFORE YOU THINK.
         </TitleApresentation>
-        <ButtonApresentation
+        <ButtonLink
           to="/newRegister"
           title="Cadastre-se na plataforma"
-          typeButton="secondary"
+          color="secondary"
         >
           Cadastre-se
-        </ButtonApresentation>
+        </ButtonLink>
       </FirstFold>
       <Section>
         <Article>
@@ -41,7 +40,7 @@ function Landing() {
           <ButtonLink
             to="/aboutPresential"
             title="Saiba mais sobre a metodologia presencial"
-            typeButton="primary"
+            color="primary"
           >
             Saiba mais
           </ButtonLink>
@@ -55,7 +54,7 @@ function Landing() {
           <ButtonLink
             to="/aboutOnline"
             title="Saiba mais sobre a metodologia online"
-            typeButton="primary"
+            color="primary"
           >
             Saiba mais
           </ButtonLink>

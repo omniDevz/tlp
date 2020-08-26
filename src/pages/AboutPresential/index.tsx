@@ -42,7 +42,7 @@ function AboutPresential() {
           <ButtonLink
             to="#"
             title="Cadastre-se agora mesmo na plataforma"
-            typeButton="primary"
+            color="primary"
           >
             Cadastre-se
           </ButtonLink>

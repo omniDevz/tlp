@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { ButtonStyled } from '../../components/Button/styled';
+import { ButtonStyled } from '../../../../components/Button/styled';
 
 export const Title = styled.h3`
   padding: 12rem 24px 32px;

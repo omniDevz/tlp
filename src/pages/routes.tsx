@@ -8,8 +8,8 @@ import AboutPresential from './AboutPresential';
 import NewRegister from './NewRegister';
 import Login from './Login';
 import RecoveryPassword from './RecoveryPassword';
-import RecoveryPasswordCode from './RecoveryPasswordCode';
-import RecoveryPasswordNew from './RecoveryPasswordNew';
+import RecoveryPasswordCode from './RecoveryPassword/pages/Code';
+import RecoveryPasswordNew from './RecoveryPassword/pages/New';
 import NotFound from './NotFound';
 
 function Routes() {
@@ -22,8 +22,9 @@ function Routes() {
         <Route path="/newRegister" component={NewRegister} />
         <Route path="/login" component={Login} />
         <Route path="/recoveryPassword" component={RecoveryPassword} />
-        <Route path="/recoveryPasswordCode" component={RecoveryPasswordCode} />
-        <Route path="/recoveryPasswordNew" component={RecoveryPasswordNew} />
+        <Route path="/recoveryPassword/code" component={RecoveryPasswordCode} />
+        <Route path="/recoveryPassword/new" component={RecoveryPasswordNew} />
+
         <Route component={NotFound} />
       </Switch>
     </BrowserRouter>

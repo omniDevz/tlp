@@ -1,11 +1,11 @@
 import React from 'react';
 
-import PageDefault from '../../components/PageDefault';
-import FormField from '../../components/FormField';
+import PageDefault from '../../../../components/PageDefault';
+import FormField from '../../../../components/FormField';
 
-import useForm from '../../hooks/useForm';
+import useForm from '../../../../hooks/useForm';
 
-import imgBackground from '../../assets/images/backgroundRecoveryPasswordCode.svg';
+import imgBackground from '../../../../assets/images/backgroundRecoveryPasswordCode.svg';
 
 import { Title, FieldSetWrapper, ReSendEmail, Button, Image } from './styled';
 

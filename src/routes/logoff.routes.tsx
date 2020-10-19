@@ -2,17 +2,17 @@ import React from 'react';
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import Landing from './Landing';
-import AboutOnline from './AboutOnline';
-import AboutPresential from './AboutPresential';
-import NewRegister from './NewRegister';
-import Login from './Login';
-import RecoveryPassword from './RecoveryPassword';
-import RecoveryPasswordCode from './RecoveryPassword/pages/Code';
-import RecoveryPasswordNew from './RecoveryPassword/pages/New';
-import NotFound from './NotFound';
+import Landing from '../pages/Landing';
+import AboutOnline from '../pages/AboutOnline';
+import AboutPresential from '../pages/AboutPresential';
+import NewRegister from '../pages/NewRegister';
+import Login from '../pages/Login';
+import RecoveryPassword from '../pages/RecoveryPassword';
+import RecoveryPasswordCode from '../pages/RecoveryPassword/pages/Code';
+import RecoveryPasswordNew from '../pages/RecoveryPassword/pages/New';
+import NotFound from '../pages/NotFound';
 
-function Routes() {
+function LogoffRoutes() {
   return (
     <BrowserRouter>
       <Switch>
@@ -31,4 +31,4 @@ function Routes() {
   );
 }
 
-export default Routes;
+export default LogoffRoutes;

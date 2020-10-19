@@ -4,6 +4,7 @@ import PageDefault from '../../components/PageDefault';
 import FormField from '../../components/FormField';
 
 import useForm from '../../hooks/useForm';
+import { useAuth } from '../../contexts/auth';
 
 import imgBackground from '../../assets/images/backgroundLogin.svg';
 
@@ -23,6 +24,12 @@ function Login() {
   };
 
   const { handleChange, values } = useForm(valuesInitials);
+
+  const { signIn } = useAuth();
+
+  function handleSingIng() {
+    signIn(values.username, values.password);
+  }
 
   return (
     <PageDefault>
@@ -48,7 +55,9 @@ function Login() {
         Esqueceu a Senha?
       </LinkRecoveryPassword>
       <Image src={imgBackground} alt="" />
-      <Button color="primary-outline">Entrar</Button>
+      <Button color="primary-outline" onClick={handleSingIng}>
+        Entrar
+      </Button>
     </PageDefault>
   );
 }

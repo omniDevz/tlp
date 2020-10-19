@@ -1,6 +1,8 @@
 import React from 'react';
+import { ToastProvider } from 'react-toast-notifications';
 import { ThemeProvider, DefaultTheme } from 'styled-components';
 import usePersistedState from './hooks/usePersistedState';
+import { AuthProvider } from './contexts/auth';
 
 import Routes from './pages/routes';
 
@@ -8,12 +10,16 @@ import dark from './assets/styles/themes/dark';
 import DefaultStyles from './assets/styles/default';
 
 function App() {
-  const [theme] = usePersistedState<DefaultTheme>('theme', dark);
+  const [theme] = usePersistedState<DefaultTheme>('@TLP:theme', dark);
 
   return (
     <ThemeProvider theme={theme}>
       <DefaultStyles />
-      <Routes />
+      <ToastProvider>
+        <AuthProvider>
+          <Routes />
+        </AuthProvider>
+      </ToastProvider>
     </ThemeProvider>
   );
 }

@@ -11,6 +11,8 @@ import useForm from '../../hooks/useForm';
 import imgConfirm from '../../assets/images/confirm.svg';
 
 import { Title, Steps, ConfirmContainer, Image } from './styled';
+import api from '../../services/api';
+import { useToasts } from 'react-toast-notifications';
 
 function NewRegister() {
   const valuesInitials = {
@@ -21,83 +23,99 @@ function NewRegister() {
     username: '',
     password: '',
   };
-  const history = useHistory();
   const [step, setStep] = useState<0 | 1 | 2 | 3>(1);
   const [registerConfirm, setRegisterConfirm] = useState<Boolean>(false);
 
   const { handleChange, values } = useForm(valuesInitials);
 
-  function validationStepOne() {
-    if (values.firstName === '') {
-      alert('Preencha o primeiro nome');
-      return false;
-    }
-    if (values.lastName === '') {
-      alert('Preencha o sobrenome');
-      return false;
-    }
-    if (values.birthDate === '') {
-      alert('Preencha a data de aniversário');
-      return false;
-    }
-    if (values.email === '') {
-      alert('Preencha o e-mail');
-      return false;
-    }
+  const history = useHistory();
+  const { addToast } = useToasts();
 
-    return true;
-  }
-
-  function validationStepTwo() {
-    if (values.username === '') {
-      alert('Preencha o nome de usuário');
-      return false;
-    }
-    if (values.password === '') {
-      alert('Preencha a senha do usuário');
-      return false;
-    }
-
-    return true;
-  }
-
-  function handleStep(step: 1 | 2 | 3, to: 0 | 1 | 2 | 3) {
-    switch (step) {
+  function validationStep(stepValidation: number) {
+    switch (stepValidation) {
       case 1:
-        if (to === 0) {
-          history.push('/');
-          return null;
+        if (values.firstName === '') {
+          alert('Preencha o primeiro nome');
+          return false;
         }
-
-        if (!validationStepOne()) return null;
-
-        setStep(2);
+        if (values.lastName === '') {
+          alert('Preencha o sobrenome');
+          return false;
+        }
+        if (values.dateOfBirth === '') {
+          alert('Preencha a data de aniversário');
+          return false;
+        }
+        if (values.email === '') {
+          alert('Preencha o e-mail');
+          return false;
+        }
         break;
-
       case 2:
-        if (to === 1) {
-          setStep(1);
-          return null;
+        if (values.username === '') {
+          alert('Preencha o nome de usuário');
+          return false;
+        }
+        if (values.password === '') {
+          alert('Preencha a senha do usuário');
+          return false;
         }
 
-        if (!validationStepTwo()) return null;
-
-        setStep(3);
-        break;
-
-      case 3:
-        setStep(2);
         break;
     }
+
+    return true;
+  }
+
+  function handleStep(step: 0 | 1 | 2 | 3, to: 0 | 1 | 2 | 3) {
+    if (step < to && !validationStep(step)) return null;
+
+    setStep(to);
+    return null;
+  }
+
+  function addNewStudent() {
+    api
+      .post('aluno', {
+        pessoa: {
+          nome: values.firstName,
+          sobrenome: values.lastName,
+          dataNascimento: values.dateOfBirth,
+          email: values.email,
+          usuario: values.username,
+          senha: values.password,
+        },
+      })
+      .then((response) => {
+        if (response.status === 206) {
+          addToast(response.data, {
+            appearance: 'warning',
+            autoDismiss: true,
+          });
+          return;
+        }
+
+        addToast('Cadastro realizado com sucesso', {
+          appearance: 'success',
+          autoDismiss: true,
+        });
+
+        history.push('/login');
+      })
+      .catch((err) => {
+        console.error(err.response.data);
+        addToast(
+          'Houve um erro inesperado no cadastro, tente novamente mais tarde',
+          {
+            appearance: 'warning',
+            autoDismiss: true,
+          }
+        );
+      });
   }
 
   function handleConfirmRegister() {
-    setRegisterConfirm(true);
-
-    setTimeout(() => {
-      setRegisterConfirm(false);
-      history.push('/');
-    }, 2200);
+    addNewStudent();
   }
 
   return (

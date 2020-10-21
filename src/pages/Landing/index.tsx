@@ -1,17 +1,17 @@
 import React from 'react';
 
-import ButtonLink from '../../components/ButtonLink';
+import Button from '../../components/Button';
 import PageDefault from '../../components/PageDefault';
 
 import backgroundFirstFold from '../../assets/images/backgroundFirstFold.jpg';
 
 import {
-  FirstFold,
   TitlePresentation,
-  Section,
-  Article,
   TitleSection,
   Description,
+  FirstFold,
+  Section,
+  Article,
 } from './styled';
 
 function Landing() {
@@ -22,13 +22,13 @@ function Landing() {
           THINK BEFORE YOU SPEAK. <br />
           READ BEFORE YOU THINK.
         </TitlePresentation>
-        <ButtonLink
+        <Button
           to="/newRegister"
           title="Cadastre-se na plataforma"
           color="secondary"
         >
           Cadastre-se
-        </ButtonLink>
+        </Button>
       </FirstFold>
       <Section>
         <Article>
@@ -37,13 +37,13 @@ function Landing() {
             Entenda a solução de seus problemas relacionado ao inglês de forma
             direta e objetiva
           </Description>
-          <ButtonLink
+          <Button
             to="/aboutPresential"
             title="Saiba mais sobre a metodologia presencial"
             color="primary"
           >
             Saiba mais
-          </ButtonLink>
+          </Button>
         </Article>
         <Article>
           <TitleSection>Online</TitleSection>
@@ -51,13 +51,13 @@ function Landing() {
             Participe de turmas online, trazendo um bate papo de pessoas
             engajadas em aprender e ensinar o inglês
           </Description>
-          <ButtonLink
+          <Button
             to="/aboutOnline"
             title="Saiba mais sobre a metodologia online"
             color="primary"
           >
             Saiba mais
-          </ButtonLink>
+          </Button>
         </Article>
       </Section>
     </PageDefault>

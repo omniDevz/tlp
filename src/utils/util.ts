@@ -22,6 +22,12 @@ const util = {
 
     return `${day}/${month}/${date.getFullYear()}`;
   },
+  emptyValue(value: string, id: string) {
+    if (value !== '') return true;
+
+    document.getElementById(id)?.focus();
+    return false;
+  },
 };
 
 export default util;

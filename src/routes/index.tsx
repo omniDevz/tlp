@@ -3,6 +3,7 @@ import React from 'react';
 import { useAuth } from '../contexts/auth';
 
 import LogoffRoutes from './logoff.routes';
+import AuthRoutes from './auth.routes';
 
 const Routes: React.FC = () => {
   const { signed, loading } = useAuth();
@@ -11,7 +12,7 @@ const Routes: React.FC = () => {
     return <p>Loading...</p>;
   }
 
-  return signed ? <p>Em Breve</p> : <LogoffRoutes />;
+  return signed ? <AuthRoutes /> : <LogoffRoutes />;
 };
 
 export default Routes;

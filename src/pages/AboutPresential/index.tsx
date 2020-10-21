@@ -1,7 +1,7 @@
 import React from 'react';
 import { MdNewReleases, MdLiveHelp, MdPlayArrow } from 'react-icons/md';
 
-import ButtonLink from '../../components/ButtonLink';
+import Button from '../../components/Button';
 import PageDefault from '../../components/PageDefault';
 
 import {
@@ -39,13 +39,13 @@ function AboutPresential() {
             Entenda a solução de seus problemas relacionado ao inglês de forma
             direta e objetiva
           </Description>
-          <ButtonLink
+          <Button
             to="/newRegister"
             title="Cadastre-se agora mesmo na plataforma"
             color="primary"
           >
             Cadastre-se
-          </ButtonLink>
+          </Button>
         </Methodology>
       </MethodologyWrapper>
     </PageDefault>

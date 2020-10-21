@@ -89,7 +89,9 @@ const Article: React.FC = () => {
         {listArticles &&
           listArticles
             .filter(handleFilterArticles)
-            .map((article) => <ArticleItem article={article} />)}
+            .map((article) => (
+              <ArticleItem key={article.articleId} article={article} />
+            ))}
       </ListArticles>
     </PageAuthorized>
   );

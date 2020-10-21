@@ -1,6 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { useToasts } from 'react-toast-notifications';
-import { useHistory } from 'react-router-dom';
 import * as auth from '../services/auth';
 import api from '../services/api';
 import storage from '../utils/storage';

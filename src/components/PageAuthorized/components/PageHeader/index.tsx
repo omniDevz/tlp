@@ -21,34 +21,14 @@ const links = [
     text: 'Artigos',
   },
   {
-    route: 'author',
-    title: 'Ir para página de autores',
-    text: 'Autores',
-  },
-  {
     route: 'transmissionNotification',
     title: 'Assistir live do professor',
     text: 'Live',
   },
   {
-    route: 'student',
-    title: 'Ir para página de alunos',
-    text: 'Alunos',
-  },
-  {
     route: 'classes',
     title: 'Ir para página da turma',
     text: 'Turma',
-  },
-  {
-    route: 'consultingType',
-    title: 'Ir para página de tipo de consultoria',
-    text: 'Tipo de consultoria',
-  },
-  {
-    route: 'maintainer',
-    title: 'Ir para página de mantenedores',
-    text: 'Mantenedores',
   },
   {
     route: 'account',

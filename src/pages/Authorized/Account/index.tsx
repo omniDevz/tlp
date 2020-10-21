@@ -21,7 +21,6 @@ import {
   HalfContainer,
   CEPContainer,
   ThreeFields,
-  LevelAccess,
   TwoFields,
   Fieldset,
   Form,
@@ -34,11 +33,11 @@ import {
   OptionsSelect,
   IStudentApi,
   IPersonApi,
-  IStudent,
 } from './interface';
 
 import { useAuth } from '../../../contexts/auth';
 import mask from '../../../utils/mask';
+import { useHistory } from 'react-router-dom';
 
 const Account: React.FC = () => {
   const [personId, setPersonId] = useState(0);
@@ -94,6 +93,7 @@ const Account: React.FC = () => {
   });
 
   const { addToast } = useToasts();
+  const history = useHistory();
 
   const { user, signOut } = useAuth();
 
@@ -234,9 +234,9 @@ const Account: React.FC = () => {
     setPersonId(person.pessoaId);
     setFirstName(person.nome);
     setLastName(person.sobrenome);
-    setCpf(mask.cpf(person.cpf));
-    setBirthDate(util.removeHoursDateTimeApi(person.dataNascimento));
-    setGenre(person.sexo);
+    setCpf(mask.cpf(person.cpf || ''));
+    setBirthDate(util.removeHoursDateTimeApi(person.dataNascimento || ''));
+    setGenre(person.sexo || '');
     setEmail(person.email);
 
     if (person.telefone) {
@@ -273,7 +273,7 @@ const Account: React.FC = () => {
         setObservations(userApi.obs);
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response);
         addToast(
           'Houve algum erro inesperado ao obter seus dados, tente novamente mais tarde',
           {
@@ -282,7 +282,7 @@ const Account: React.FC = () => {
           }
         );
       });
-  }, [addToast]);
+  }, [user, addToast]);
 
   function handleInstancePersonChangeApi() {
     const applySetPhone =
@@ -317,7 +317,7 @@ const Account: React.FC = () => {
         : null,
       endereco: applySetAddress
         ? {
-            cep: Number(cep),
+            cep: Number(util.onlyNumbers(cep)),
             logradouro: address,
             bairro: neighborhood,
             cidade: city,
@@ -327,7 +327,7 @@ const Account: React.FC = () => {
         : null,
       numero: Number(numberAddress),
       usuario: username,
-      senha: password === '' ? passwordBack : password,
+      senha: passwordNew === '' ? passwordBack : passwordNew,
       ultimoUsuarioAlteracao: user?.studentId,
     } as IPersonApi;
 
@@ -335,6 +335,32 @@ const Account: React.FC = () => {
   }
 
   function handleUpdate() {
+    console.log(handleInstancePersonChangeApi().senha);
+    const hasChangePassword =
+      passwordNew.length > 0 || passwordConfirm.length > 0;
+    const differenceInNewPassword = passwordNew !== passwordConfirm;
+    const differenceInOldPassword = password !== passwordBack;
+
+    if (hasChangePassword && differenceInOldPassword) {
+      addToast('Informe sua senha se acesso corretamente', {
+        appearance: 'warning',
+        autoDismiss: true,
+      });
+      document.getElementById('id_password')?.focus();
+
+      return;
+    }
+
+    if (hasChangePassword && differenceInNewPassword) {
+      addToast('A nova senha e a confirmação deve ser igual', {
+        appearance: 'warning',
+        autoDismiss: true,
+      });
+      document.getElementById('id_passwordNew')?.focus();
+
+      return;
+    }
+
     api
       .put('aluno', {
         obs: observations,
@@ -357,7 +383,7 @@ const Account: React.FC = () => {
         });
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response);
         addToast(
           'Houve algum erro inesperado na atualização do professor, tente novamente mais tarde',
           {
@@ -389,6 +415,7 @@ const Account: React.FC = () => {
           autoDismiss: true,
         });
 
+        history.push('/');
         signOut();
       })
       .catch((err) => {

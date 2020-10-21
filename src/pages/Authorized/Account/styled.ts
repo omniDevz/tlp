@@ -58,10 +58,3 @@ export const ButtonsWrapper = styled.div`
   display: flex;
   column-gap: 1.6rem;
 `;
-
-export const LevelAccess = styled.p`
-  padding-bottom: 0.8rem;
-  text-align: right;
-  font-size: 1.8rem;
-  width: 100%;
-`;

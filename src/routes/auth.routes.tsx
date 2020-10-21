@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 
 import ArticlePage from '../pages/Authorized/Article';
+import Account from '../pages/Authorized/Account';
 import NotFound from '../pages/NotFound';
 
 import Article from './article.routes';
@@ -11,6 +12,10 @@ const AuthRoutes: React.FC = () => {
     {
       path: '/',
       component: ArticlePage,
+    },
+    {
+      path: '/account',
+      component: Account,
     },
   ].concat(Article);
 

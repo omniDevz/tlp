@@ -8,7 +8,6 @@ import AboutPresential from '../pages/AboutPresential';
 import NewRegister from '../pages/NewRegister';
 import Login from '../pages/Login';
 import RecoveryPassword from '../pages/RecoveryPassword';
-import RecoveryPasswordCode from '../pages/RecoveryPassword/pages/Code';
 import RecoveryPasswordNew from '../pages/RecoveryPassword/pages/New';
 import NotFound from '../pages/NotFound';
 
@@ -21,9 +20,11 @@ function LogoffRoutes() {
         <Route path="/aboutPresential" component={AboutPresential} />
         <Route path="/newRegister" component={NewRegister} />
         <Route path="/login" component={Login} />
+        <Route
+          path="/recoveryPassword/new/:token"
+          component={RecoveryPasswordNew}
+        />
         <Route path="/recoveryPassword" component={RecoveryPassword} />
-        <Route path="/recoveryPassword/code" component={RecoveryPasswordCode} />
-        <Route path="/recoveryPassword/new" component={RecoveryPasswordNew} />
 
         <Route component={NotFound} />
       </Switch>

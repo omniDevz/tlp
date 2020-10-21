@@ -335,7 +335,6 @@ const Account: React.FC = () => {
   }
 
   function handleUpdate() {
-    console.log(handleInstancePersonChangeApi().senha);
     const hasChangePassword =
       passwordNew.length > 0 || passwordConfirm.length > 0;
     const differenceInNewPassword = passwordNew !== passwordConfirm;

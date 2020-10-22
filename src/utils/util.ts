@@ -30,6 +30,9 @@ const util = {
     document.getElementById(id)?.focus();
     return false;
   },
+  onFocus(id: string) {
+    document.getElementById(id)?.focus();
+  }
 };
 
 export default util;

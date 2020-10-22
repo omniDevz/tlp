@@ -13,6 +13,8 @@ import imgConfirm from '../../assets/images/confirm.svg';
 import { Title, Steps, ConfirmContainer, Image } from './styled';
 import api from '../../services/api';
 import { useToasts } from 'react-toast-notifications';
+import util from '../../utils/util';
+import validation from '../../utils/validation';
 
 function NewRegister() {
   const valuesInitials = {
@@ -20,8 +22,10 @@ function NewRegister() {
     lastName: '',
     birthDate: '',
     email: '',
+    emailConfirmation: '',
     username: '',
     password: '',
+    passwordConfirmation: '',
   };
   const [step, setStep] = useState<0 | 1 | 2 | 3>(1);
   const [registerConfirm] = useState<Boolean>(false);
@@ -34,34 +38,94 @@ function NewRegister() {
   function validationStep(stepValidation: number) {
     switch (stepValidation) {
       case 1:
-        if (values.firstName === '') {
-          alert('Preencha o primeiro nome');
+        if (!util.emptyValue(values.firstName, 'id_firstName')) {
+          addToast('Preencha o primeiro nome', {
+            appearance: 'warning',
+            autoDismiss: true,
+          });
           return false;
         }
-        if (values.lastName === '') {
-          alert('Preencha o sobrenome');
+        if (!util.emptyValue(values.lastName, 'id_lastName')) {
+          addToast('Preencha o sobrenome', {
+            appearance: 'warning',
+            autoDismiss: true,
+          });
           return false;
         }
-        if (values.dateOfBirth === '') {
-          alert('Preencha a data de aniversário');
+        if (!util.emptyValue(values.dateOfBirth, 'id_dateOfBirth')) {
+          addToast('Preencha a data de aniversário', {
+            appearance: 'warning',
+            autoDismiss: true,
+          });
           return false;
         }
-        if (values.email === '') {
-          alert('Preencha o e-mail');
+        if (!util.emptyValue(values.email, 'id_email')) {
+          addToast('Preencha o e-mail', {
+            appearance: 'warning',
+            autoDismiss: true,
+          });
           return false;
         }
-        break;
+        if (!validation.email(values.email)) {
+          addToast('Preencha o e-mail corretamente', {
+            appearance: 'warning',
+            autoDismiss: true,
+          });
+          util.onFocus('id_email');
+          return false;
+        }
+        if (
+          !util.emptyValue(values.emailConfirmation, 'id_emailConfirmation')
+        ) {
+          addToast('Preencha a confirmação do e-mail', {
+            appearance: 'warning',
+            autoDismiss: true,
+          });
+          return;
+        }
+        if (values.emailConfirmation !== values.email) {
+          addToast('O e-mail e sua confirmação devem iguais', {
+            appearance: 'warning',
+            autoDismiss: true,
+          });
+          util.onFocus('id_email');
+          return false;
+        }
       case 2:
-        if (values.username === '') {
-          alert('Preencha o nome de usuário');
+        if (!util.emptyValue(values.username, 'id_username')) {
+          addToast('Preencha o nome de usuário', {
+            appearance: 'warning',
+            autoDismiss: true,
+          });
           return false;
         }
-        if (values.password === '') {
-          alert('Preencha a senha do usuário');
+        if (!util.emptyValue(values.password, 'id_password')) {
+          addToast('Preencha a senha do usuário', {
+            appearance: 'warning',
+            autoDismiss: true,
+          });
           return false;
         }
-
-        break;
+        if (
+          !util.emptyValue(
+            values.passwordConfirmation,
+            'id_passwordConfirmation'
+          )
+        ) {
+          addToast('Preencha a senha do usuário', {
+            appearance: 'warning',
+            autoDismiss: true,
+          });
+          return false;
+        }
+        if (values.password !== values.passwordConfirmation) {
+          addToast('A senha e sua confirmação devem iguais', {
+            appearance: 'warning',
+            autoDismiss: true,
+          });
+          util.onFocus('id_password');
+          return false;
+        }
     }
 
     return true;

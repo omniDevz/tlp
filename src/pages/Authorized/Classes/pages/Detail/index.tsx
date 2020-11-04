@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { Link } from 'react-router-dom';
-import { FiEdit, FiTrash, FiUser, FiSearch } from 'react-icons/fi';
+import { FiUser, FiSearch } from 'react-icons/fi';
 
 import FormField from '../../../../../components/FormField';
 import PageAuthorized from '../../../../../components/PageAuthorized';

@@ -56,7 +56,7 @@ function RecoveryPasswordNew() {
         );
         history.push('/recoveryPassword');
       });
-  }, [token]);
+  }, [token, addToast, history]);
 
   function handleNewPassword() {
     if (values.newPassword.length === 0) {

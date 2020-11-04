@@ -47,7 +47,7 @@ const Article: React.FC = () => {
       .catch((err) => {
         console.log(err);
         addToast(
-          'Houve algum erro inesperado na busca por mantenedores, tente novamente mais tarde',
+          'Houve algum erro inesperado na busca por artigos, tente novamente mais tarde',
           {
             appearance: 'error',
             autoDismiss: true,

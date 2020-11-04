@@ -91,6 +91,7 @@ function NewRegister() {
           util.onFocus('id_email');
           return false;
         }
+        return true;
       case 2:
         if (!util.emptyValue(values.username, 'id_username')) {
           addToast('Preencha o nome de usuário', {
@@ -126,6 +127,7 @@ function NewRegister() {
           util.onFocus('id_password');
           return false;
         }
+        return true;
     }
 
     return true;

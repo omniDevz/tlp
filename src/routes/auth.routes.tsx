@@ -3,6 +3,7 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 
 import ArticlePage from '../pages/Authorized/Article';
 import Account from '../pages/Authorized/Account';
+import Live from '../pages/Authorized/Live';
 import NotFound from '../pages/NotFound';
 
 import Article from './article.routes';
@@ -16,6 +17,10 @@ const AuthRoutes: React.FC = () => {
     {
       path: '/account',
       component: Account,
+    },
+    {
+      path: '/live/:transmissionNotificationId',
+      component: Live,
     },
   ].concat(Article);
 

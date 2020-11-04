@@ -8,3 +8,9 @@ export interface IRoute {
   title: string;
   text: string;
 }
+
+export interface ITransmissionNotificationApi {
+  notificacaoTransmissaoId: number;
+  descricao: string;
+  link: string;
+}

@@ -6,6 +6,7 @@ export interface StepOneProps {
     lastName: string;
     birthDate: string;
     email: string;
+    emailConfirmation: string;
   };
   handleChange: FunctionComponentElement;
   handleStep: function(

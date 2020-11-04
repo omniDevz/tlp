@@ -7,9 +7,15 @@ import Live from '../pages/Authorized/Live';
 import NotFound from '../pages/NotFound';
 
 import Article from './article.routes';
+import Classes from './classes.routes';
+
+interface IRoutes {
+  path: string;
+  component: React.FC<any>;
+}
 
 const AuthRoutes: React.FC = () => {
-  const routes = [
+  const routes: IRoutes[] = [
     {
       path: '/',
       component: ArticlePage,
@@ -22,7 +28,7 @@ const AuthRoutes: React.FC = () => {
       path: '/live/:transmissionNotificationId',
       component: Live,
     },
-  ].concat(Article);
+  ].concat(Article, Classes);
 
   return (
     <BrowserRouter>

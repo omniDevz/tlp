@@ -23,7 +23,6 @@ export const AuthProvider: React.FC = ({ children }) => {
         api.defaults.headers.Authorization = `Bearer ${storiedToken}`;
 
         setUser(JSON.parse(storiedUser));
-        // api.defaults.headers.Logged = `${user?.teacherId}-${user?.levelAccess}`;
       }
       setLoading(false);
     }

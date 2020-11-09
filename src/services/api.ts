@@ -1,22 +1,22 @@
 import axios from 'axios';
 
-import config from '../config';
+import constants from '../constants';
 import storage from '../utils/storage';
 
 export const apiViaCep = axios.create({
-  baseURL: config.URL_API_VIACEP,
+  baseURL: constants.URL_API_VIACEP,
 });
 
 export const apiCountries = axios.create({
-  baseURL: config.URL_API_COUNTRIES,
+  baseURL: constants.URL_API_COUNTRIES,
 });
 
 export const apiLocations = axios.create({
-  baseURL: config.URL_API_LOCATIONS,
+  baseURL: constants.URL_API_LOCATIONS,
 });
 
 const api = axios.create({
-  baseURL: config.URL_BACKEND,
+  baseURL: process.env.REACT_APP_API,
 });
 
 const tokenExpired = () => {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
-import { FiUser, FiSearch } from 'react-icons/fi';
+import { useHistory, useParams } from 'react-router';
+import { FiUser, FiSearch, FiLogOut } from 'react-icons/fi';
 
 import FormField from '../../../../../components/FormField';
 import PageAuthorized from '../../../../../components/PageAuthorized';
@@ -45,6 +45,8 @@ const ClassesUpdate: React.FC = () => {
   const { idClass } = useParams<ParamsProps>();
 
   const { addToast } = useToasts();
+  const history = useHistory();
+  const { user } = useAuth();
 
   useEffect(() => {
     api
@@ -102,6 +104,36 @@ const ClassesUpdate: React.FC = () => {
     );
   }
 
+  function handleRemoveStudentToClass() {
+    api
+      .delete(`movAlunoTurma/turmaId=${idClass}&alunoId=${user?.studentId}`)
+      .then((response) => {
+        if (response.status === 206) {
+          addToast(response.data, {
+            appearance: 'warning',
+            autoDismiss: true,
+          });
+          return;
+        }
+
+        addToast('Você saiu da turma!', {
+          appearance: 'info',
+          autoDismiss: true,
+        });
+        history.goBack();
+      })
+      .catch((err) => {
+        console.error(err.response);
+        addToast(
+          'Houve algum erro inesperado ao sair da turma, tente novamente mais tarde',
+          {
+            appearance: 'error',
+            autoDismiss: true,
+          }
+        );
+      });
+  }
+
   return (
     <PageAuthorized type="back" text="Turma">
       <Header>
@@ -110,6 +142,7 @@ const ClassesUpdate: React.FC = () => {
           <Description>{classDetail.description}</Description>
           <Code>#{classDetail.code}</Code>
         </Details>
+        <FiLogOut title="Sair da turma" onClick={handleRemoveStudentToClass} />
       </Header>
 
       <FormFieldWrapper>

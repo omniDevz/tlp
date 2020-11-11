@@ -1,26 +1,27 @@
 import styled from 'styled-components';
 
-export const CardClassWrapper = styled.li`
+export const CardCourseWrapper = styled.li`
   border: 2px solid ${(props) => props.theme.colors.secondary};
   padding: .8rem;
   display: flex;
   justify-content: space-between;
+  cursor: pointer;
+  transform: scale(1);
+  transition: all 320ms ease-in-out;
 
   & + li {
     margin-top: .8rem;
   }
+
+  &:hover {
+    transform: scale(.98);
+  }
 `;
 
 export const Infos = styled.div`
-  width: 100%;
-`;
-
-export const Number = styled.p`
-  font-size: 2rem;
-  font-weight: 500;
-  margin-bottom: .4rem;
-  text-align: right;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  grid-gap: .8rem;
 `;
 
 export const Title = styled.h4`
@@ -31,9 +32,4 @@ export const Title = styled.h4`
 
 export const Description = styled.p`
   font-size: 1.6rem;
-`;
-
-export const Price = styled(Description)`
-  text-align: right;
-  width: 100%;
 `;

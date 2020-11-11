@@ -24,6 +24,11 @@ let links = [
     text: 'Cursos',
   },
   {
+    route: 'myCourses',
+    title: 'Ir para página dos meus cursos adquiridos',
+    text: 'Meus cursos',
+  },
+  {
     route: 'article',
     title: 'Ir para página de artigos recomendados',
     text: 'Artigos',

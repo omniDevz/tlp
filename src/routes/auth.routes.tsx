@@ -9,6 +9,7 @@ import NotFound from '../pages/NotFound';
 import Article from './article.routes';
 import Classes from './classes.routes';
 import Course from './course.routes';
+import MyCourses from './myCourses.routes';
 
 interface IRoutes {
   path: string;
@@ -29,7 +30,7 @@ const AuthRoutes: React.FC = () => {
       path: '/live/:transmissionNotificationId',
       component: Live,
     },
-  ].concat(Article, Classes, Course);
+  ].concat(Article, Classes, Course, MyCourses);
 
   return (
     <BrowserRouter>

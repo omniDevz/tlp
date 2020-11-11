@@ -28,6 +28,7 @@ import { ClassProps } from '../../interface';
 import { ParamsProps, StudentProps, IStudent } from './interface';
 import { useToasts } from 'react-toast-notifications';
 import util from '../../../../../utils/util';
+import { useAuth } from '../../../../../contexts/auth';
 
 const ClassesUpdate: React.FC = () => {
   const valuesInitials = {

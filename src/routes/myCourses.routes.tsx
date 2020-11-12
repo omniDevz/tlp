@@ -3,7 +3,7 @@ import MyCoursesDetail from '../pages/Authorized/MyCourses/pages/Detail';
 
 const MyCoursesRoutes = [
   {
-    path: '/myCourses/:idCourse',
+    path: '/myCourses/:idMyCourse',
     component: MyCoursesDetail,
   },
   {

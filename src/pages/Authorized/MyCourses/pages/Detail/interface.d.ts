@@ -1,7 +1,7 @@
 import { ICourse, ICourseApi } from "../../interface";
 
 export interface ICourseDetailParams {
-  idCourse: string;
+  idMyCourse: string;
 }
 
 export interface IClassApi {

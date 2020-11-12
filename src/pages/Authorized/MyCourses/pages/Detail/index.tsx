@@ -7,6 +7,7 @@ import PageAuthorized from '../../../../../components/PageAuthorized';
 
 import CardClass from './components/CardClass';
 
+import { useAuth } from '../../../../../contexts/auth';
 import api from '../../../../../services/api';
 
 import { ClassesWrapper, ButtonsWrapper, ClassStream } from './styled';
@@ -21,14 +22,21 @@ import {
 const Detail: React.FC = () => {
   const [course, setCourse] = useState<ICourseDetail>({} as ICourseDetail);
   const [listClass, setListClass] = useState<IClass[]>([]);
-  // const [classActive, setClassActive] = useState<IClass>({} as IClass);
+  const [classActive, setClassActive] = useState<IClass>({} as IClass);
 
-  const { idCourse } = useParams() as ICourseDetailParams;
+  const { idMyCourse } = useParams() as ICourseDetailParams;
   const { addToast } = useToasts();
+  const { user } = useAuth();
 
   function handleGetCourseFromApi() {
+    console.log(idMyCourse);
+
+    if (!user?.studentId) return;
+
     api
-      .get(`curso/byId/${idCourse}`)
+      .get(
+        `movCursoAluno/cursoAulas/cursoId=${idMyCourse}&alunoId=${user?.studentId}`
+      )
       .then((response) => {
         if (response.status === 206) {
           addToast(response.data, {
@@ -62,9 +70,10 @@ const Detail: React.FC = () => {
         });
 
         setListClass(classes);
+        setClassActive(classes[0]);
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response);
         addToast(
           'Houve algum erro inesperado na busca por cursos, tente novamente mais tarde',
           {
@@ -75,14 +84,21 @@ const Detail: React.FC = () => {
       });
   }
 
-  useEffect(handleGetCourseFromApi, []);
+  useEffect(handleGetCourseFromApi, [user, idMyCourse]);
 
   return (
     <PageAuthorized type="back" text={course.name}>
-      <ClassStream />
+      <ClassStream src={!!classActive.link ? classActive.link : ''} />
       <ClassesWrapper>
         {!!listClass.length &&
-          listClass.map((c) => <CardClass key={c.classId} classRoom={c} />)}
+          listClass.map((c) => (
+            <CardClass
+              key={c.classId}
+              classRoom={c}
+              active={classActive.classId === c.classId}
+              setActive={setClassActive}
+            />
+          ))}
       </ClassesWrapper>
       <ButtonsWrapper>
         <Button color="primary-outline" onClick={() => {}}>

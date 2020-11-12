@@ -28,10 +28,10 @@ export const Fieldset = styled.fieldset`
   }
 `;
 
-export const TwoFields = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  column-gap: 16px;
+export const Fields = styled.div`
+  display: flex;
+  flex-direction: column;
+  grid-gap: .8rem;
 `;
 
 export const Legend = styled.legend`

@@ -5,20 +5,20 @@ import FormField from '../../../../components/FormField';
 import backgroundNewRegister from '../../../../assets/images/backgroundNewRegisterStepTwo.svg';
 
 import {
-  Form,
-  Fieldset,
-  Legend,
   ButtonWrapper,
+  Fieldset,
+  Fields,
+  Legend,
   Button,
-  TwoFields,
+  Form,
 } from './styled';
 
 import { StepTwoProps } from './interface';
 
 const StepTwo: React.FC<StepTwoProps> = ({
-  values,
   handleChange,
   handleStep,
+  values,
 }) => {
   return (
     <Form
@@ -28,7 +28,7 @@ const StepTwo: React.FC<StepTwoProps> = ({
     >
       <Fieldset>
         <Legend>Dados Pessoais</Legend>
-        <TwoFields>
+        <Fields>
           <FormField
             label="Usuário"
             name="username"
@@ -42,7 +42,14 @@ const StepTwo: React.FC<StepTwoProps> = ({
             type="password"
             onChange={handleChange}
           />
-        </TwoFields>
+          <FormField
+            label="Confirme a senha"
+            name="passwordConfirmation"
+            value={values.passwordConfirmation}
+            type="password"
+            onChange={handleChange}
+          />
+        </Fields>
       </Fieldset>
       <ButtonWrapper>
         <Button onClick={() => handleStep(2, 3)} color="primary">

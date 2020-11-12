@@ -4,6 +4,7 @@ export interface StepTwoProps {
   values: {
     username: string;
     password: string;
+    passwordConfirmation: string;
   };
   handleChange: FunctionComponentElement;
   handleStep: function(

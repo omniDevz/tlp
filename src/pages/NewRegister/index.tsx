@@ -27,7 +27,7 @@ function NewRegister() {
     password: '',
     passwordConfirmation: '',
   };
-  const [step, setStep] = useState<0 | 1 | 2 | 3>(1);
+  const [step, setStep] = useState<0 | 1 | 2 | 3>(2);
   const [registerConfirm] = useState<Boolean>(false);
 
   const { handleChange, values } = useForm(valuesInitials);
@@ -121,7 +121,7 @@ function NewRegister() {
             'id_passwordConfirmation'
           )
         ) {
-          addToast('Preencha a senha do usuário', {
+          addToast('Preencha a confirmação da senha', {
             appearance: 'warning',
             autoDismiss: true,
           });

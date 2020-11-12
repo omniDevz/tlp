@@ -48,6 +48,8 @@ const Account: React.FC = () => {
   const [birthDate, setBirthDate] = useState('');
   const [genre, setGenre] = useState('M');
   const [email, setEmail] = useState('');
+  const [emailBack, setEmailBack] = useState('');
+  const [emailConfirmation, setEmailConfirmation] = useState('');
   const [typePhone, setTypePhone] = useState('F');
   const [countryCode, setCountryCode] = useState('');
   const [ddd, setDdd] = useState('');
@@ -239,6 +241,7 @@ const Account: React.FC = () => {
     setBirthDate(util.removeHoursDateTimeApi(person.dataNascimento || ''));
     setGenre(person.sexo || '');
     setEmail(person.email);
+    setEmailBack(person.email);
 
     if (person.telefone) {
       const { telefone: phone } = person;
@@ -266,7 +269,7 @@ const Account: React.FC = () => {
 
   useEffect(() => {
     api
-      .get(`/aluno/${user?.studentId}`)
+      .get(`aluno/${user?.studentId}`)
       .then(({ data }) => {
         const userApi = data as IStudentApi;
 
@@ -335,27 +338,27 @@ const Account: React.FC = () => {
     return personApi;
   }
 
-  function handleUpdate() {
+  function handleValidationUpdate() {
     if (!util.emptyValue(firstName, 'id_firstName')) {
       addToast('Preencha o primeiro nome', {
         appearance: 'warning',
         autoDismiss: true,
       });
-      return;
+      return false;
     }
     if (!util.emptyValue(lastName, 'id_lastName')) {
       addToast('Preencha o sobrenome', {
         appearance: 'warning',
         autoDismiss: true,
       });
-      return;
+      return false;
     }
     if (!util.emptyValue(birthDate, 'id_birthDate')) {
       addToast('Preencha a data de aniversário', {
         appearance: 'warning',
         autoDismiss: true,
       });
-      return;
+      return false;
     }
     if (!validation.dateMinToDay(birthDate)) {
       addToast('A data deve ser inferior ao dia de hoje', {
@@ -363,14 +366,14 @@ const Account: React.FC = () => {
         autoDismiss: true,
       });
       document.getElementById('id_birthDate')?.focus();
-      return;
+      return false;
     }
     if (!util.emptyValue(email, 'id_email')) {
       addToast('Preencha o e-mail', {
         appearance: 'warning',
         autoDismiss: true,
       });
-      return;
+      return false;
     }
     if (!validation.email(email)) {
       addToast('Preencha o e-mail corretamente', {
@@ -378,14 +381,34 @@ const Account: React.FC = () => {
         autoDismiss: true,
       });
       util.onFocus('id_email');
-      return;
+      return false;
     }
+
+    if (email !== emailBack) {
+      if (!util.emptyValue(emailConfirmation, 'id_emailConfirmation')) {
+        addToast('Preencha a confirmação do e-mail', {
+          appearance: 'warning',
+          autoDismiss: true,
+        });
+        return false;
+      }
+
+      if (emailConfirmation !== email) {
+        addToast('O e-mail e sua confirmação devem iguais', {
+          appearance: 'warning',
+          autoDismiss: true,
+        });
+        util.onFocus('id_email');
+        return false;
+      }
+    }
+
     if (!util.emptyValue(username, 'id_username')) {
       addToast('Preencha o nome de usuário', {
         appearance: 'warning',
         autoDismiss: true,
       });
-      return;
+      return false;
     }
 
     const hasChangePassword =
@@ -400,7 +423,7 @@ const Account: React.FC = () => {
       });
       document.getElementById('id_password')?.focus();
 
-      return;
+      return false;
     }
 
     if (hasChangePassword && differenceInNewPassword) {
@@ -410,8 +433,14 @@ const Account: React.FC = () => {
       });
       document.getElementById('id_passwordNew')?.focus();
 
-      return;
+      return false;
     }
+
+    return true;
+  }
+
+  function handleUpdate() {
+    if (!handleValidationUpdate()) return;
 
     api
       .put('aluno', {
@@ -551,6 +580,16 @@ const Account: React.FC = () => {
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setEmail(e.target.value)
               }
+              type="email"
+            />
+            <FormField
+              label="Confirme o e-mail"
+              name="emailConfirmation"
+              value={emailConfirmation}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setEmailConfirmation(e.target.value)
+              }
+              type="email"
             />
           </Fieldset>
         </Collapse>

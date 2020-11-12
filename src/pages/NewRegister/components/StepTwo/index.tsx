@@ -34,6 +34,7 @@ const StepTwo: React.FC<StepTwoProps> = ({
             name="username"
             value={values.username}
             onChange={handleChange}
+            maxLength={15}
           />
           <FormField
             label="Senha"
@@ -41,6 +42,7 @@ const StepTwo: React.FC<StepTwoProps> = ({
             value={values.password}
             type="password"
             onChange={handleChange}
+            maxLength={32}
           />
           <FormField
             label="Confirme a senha"
@@ -48,6 +50,7 @@ const StepTwo: React.FC<StepTwoProps> = ({
             value={values.passwordConfirmation}
             type="password"
             onChange={handleChange}
+            maxLength={32}
           />
         </Fields>
       </Fieldset>

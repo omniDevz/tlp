@@ -41,6 +41,7 @@ function Login() {
             name="username"
             value={values.username}
             onChange={handleChange}
+            maxLength={15}
           />
           <FormField
             label="Senha"
@@ -48,6 +49,7 @@ function Login() {
             value={values.password}
             onChange={handleChange}
             type="password"
+            maxLength={32}
           />
         </FieldSetWrapper>
       </Form>

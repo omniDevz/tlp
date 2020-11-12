@@ -59,6 +59,7 @@ const ClassesNew: React.FC = () => {
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setCode(e.target.value)
           }
+          maxLength={5}
         />
         <Button color="primary" onClick={handleSubmitClass}>
           Entrar

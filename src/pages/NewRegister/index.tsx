@@ -59,6 +59,14 @@ function NewRegister() {
           });
           return false;
         }
+        if (!validation.dateMinToDay(values.dateOfBirth)) {
+          addToast('A data deve ser inferior ao dia de hoje', {
+            appearance: 'warning',
+            autoDismiss: true,
+          });
+          document.getElementById('id_dateOfBirth')?.focus();
+          return false;
+        }
         if (!util.emptyValue(values.email, 'id_email')) {
           addToast('Preencha o e-mail', {
             appearance: 'warning',

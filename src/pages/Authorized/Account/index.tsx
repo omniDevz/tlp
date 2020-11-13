@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useToasts } from 'react-toast-notifications';
 
 import Button from '../../../components/Button';
@@ -7,14 +8,20 @@ import FormField from '../../../components/FormField';
 import PageAuthorized from '../../../components/PageAuthorized';
 import RadioButton from '../../../components/RadioButton';
 import Select from '../../../components/Select';
+import ModalConfirmation from '../../../components/ModalConfirmation';
 
 import util from '../../../utils/util';
+import validation from '../../../utils/validation';
+import { useAuth } from '../../../contexts/auth';
 
+import mask from '../../../utils/mask';
 import api, {
   apiCountries,
   apiLocations,
   apiViaCep,
 } from '../../../services/api';
+
+import alertRemoveAccount from '../../../assets/images/alertRemoveAccount.svg';
 
 import {
   ButtonsWrapper,
@@ -34,11 +41,6 @@ import {
   IStudentApi,
   IPersonApi,
 } from './interface';
-
-import { useAuth } from '../../../contexts/auth';
-import mask from '../../../utils/mask';
-import { useHistory } from 'react-router-dom';
-import validation from '../../../utils/validation';
 
 const Account: React.FC = () => {
   const [personId, setPersonId] = useState(0);
@@ -67,6 +69,8 @@ const Account: React.FC = () => {
   const [passwordBack, setPasswordBack] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [observations, setObservations] = useState('');
+  const [callModalRemoveAccount, setCallModalRemoveAccount] = useState(false);
+  const [removeAccount, setRemoveAccount] = useState(false);
 
   const [countries, setCountries] = useState<OptionsSelect>({
     options: [
@@ -268,6 +272,8 @@ const Account: React.FC = () => {
   }
 
   useEffect(() => {
+    if (!user?.studentId) return;
+
     api
       .get(`aluno/${user?.studentId}`)
       .then(({ data }) => {
@@ -277,7 +283,7 @@ const Account: React.FC = () => {
         setObservations(userApi.obs);
       })
       .catch((err) => {
-        console.log(err.response);
+        console.log(err);
         addToast(
           'Houve algum erro inesperado ao obter seus dados, tente novamente mais tarde',
           {
@@ -475,8 +481,12 @@ const Account: React.FC = () => {
       });
   }
 
+  function handleShowModalConfirmation() {
+    setCallModalRemoveAccount(true);
+  }
+
   function handleDeleteStudent() {
-    if (!window.confirm('Realmente deseja remover sua conta?')) {
+    if (!removeAccount) {
       return;
     }
 
@@ -510,8 +520,18 @@ const Account: React.FC = () => {
         );
       });
   }
+
+  useEffect(handleDeleteStudent, [api, removeAccount]);
+
   return (
     <PageAuthorized type="back" text="Meu perfil">
+      <ModalConfirmation
+        showModal={callModalRemoveAccount}
+        title="Deseja remover sua conta?"
+        image={alertRemoveAccount}
+        setValue={setRemoveAccount}
+        setCloseModal={setCallModalRemoveAccount}
+      />
       <Form>
         <Collapse label="Dados pessoais">
           <Fieldset>
@@ -794,7 +814,7 @@ const Account: React.FC = () => {
         </Collapse>
       </Form>
       <ButtonsWrapper>
-        <Button color="primary-outline" onClick={handleDeleteStudent}>
+        <Button color="primary-outline" onClick={handleShowModalConfirmation}>
           Excluir
         </Button>
         <Button color="primary" onClick={handleUpdate}>

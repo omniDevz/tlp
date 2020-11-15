@@ -15,8 +15,12 @@ export const apiLocations = axios.create({
   baseURL: constants.URL_API_LOCATIONS,
 });
 
+export const apiPagSeguroSandBox = axios.create({
+  baseURL: constants.URL_API_PAGSEGURO_SANDBOX,
+});
+
 const api = axios.create({
-  baseURL: process.env.REACT_APP_API,
+  baseURL: constants.URL_API_TLP,
 });
 
 const tokenExpired = () => {

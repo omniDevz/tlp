@@ -8,7 +8,7 @@ import PageAuthorized from '../../../../../components/PageAuthorized';
 import CardClass from './components/CardClass';
 
 import { useAuth } from '../../../../../contexts/auth';
-import api from '../../../../../services/api';
+import api, { apiPagSeguroSandBox } from '../../../../../services/api';
 import util from '../../../../../utils/util';
 
 import {
@@ -89,6 +89,52 @@ const Detail: React.FC = () => {
 
   useEffect(handleGetCourseFromApi, []);
 
+  function handleBuyPagSeguroCourse() {
+    const xmlBody = `
+<?xml version="1.0"?>
+<checkout>
+  <sender>
+    <name>${user?.firstName} ${user?.lastName}</name>
+    <email>${user?.email}</email>
+  </sender>
+  <currency>BRL</currency>
+  <items>
+    <item>
+      <id>${course.courseId}</id>
+      <description>${course.name}</description>
+      <amount>${course.price.toFixed(2)}</amount>
+      <quantity>1</quantity>
+      <weight>0</weight>
+    </item>
+  </items>
+  <shipping>
+    <addressRequired>false</addressRequired>
+  </shipping>
+  <receiver>
+    <email>${process.env.REACT_APP_PAGSEGURO_EMAIL}</email>
+  </receiver>
+  <enableRecover>false</enableRecover>
+</checkout>
+    `;
+
+    apiPagSeguroSandBox
+      .post(
+        `checkout?email=${process.env.REACT_APP_PAGSEGURO_EMAIL}&token=${process.env.REACT_APP_PAGSEGURO_TOKEN}`,
+        xmlBody,
+        {
+          headers: {
+            'Content-Type': 'application/xml',
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  }
+
   function handleGetCourseFree() {
     if (!user?.studentId) return;
 
@@ -126,6 +172,7 @@ const Detail: React.FC = () => {
 
   function handleBuyCourse() {
     if (course.price === 0) handleGetCourseFree();
+    else handleBuyPagSeguroCourse();
   }
 
   const priceCourse =

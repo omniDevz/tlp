@@ -131,7 +131,7 @@ const Detail: React.FC = () => {
         console.log(res);
       })
       .catch((err) => {
-        console.log(err.response);
+        console.log(err);
       });
   }
 

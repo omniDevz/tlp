@@ -8,8 +8,9 @@ import PageAuthorized from '../../../../../components/PageAuthorized';
 import CardClass from './components/CardClass';
 
 import { useAuth } from '../../../../../contexts/auth';
-import api, { apiPagSeguroSandBox } from '../../../../../services/api';
+import api from '../../../../../services/api';
 import util from '../../../../../utils/util';
+import constants from '../../../../../constants';
 
 import {
   ClassesWrapper,
@@ -90,48 +91,58 @@ const Detail: React.FC = () => {
   useEffect(handleGetCourseFromApi, []);
 
   function handleBuyPagSeguroCourse() {
-    const xmlBody = `
-<?xml version="1.0"?>
-<checkout>
-  <sender>
-    <name>${user?.firstName} ${user?.lastName}</name>
-    <email>${user?.email}</email>
-  </sender>
-  <currency>BRL</currency>
-  <items>
-    <item>
-      <id>${course.courseId}</id>
-      <description>${course.name}</description>
-      <amount>${course.price.toFixed(2)}</amount>
-      <quantity>1</quantity>
-      <weight>0</weight>
-    </item>
-  </items>
-  <shipping>
-    <addressRequired>false</addressRequired>
-  </shipping>
-  <receiver>
-    <email>${process.env.REACT_APP_PAGSEGURO_EMAIL}</email>
-  </receiver>
-  <enableRecover>false</enableRecover>
-</checkout>
-    `;
+    if (!user?.studentId) return;
 
-    apiPagSeguroSandBox
-      .post(
-        `checkout?email=${process.env.REACT_APP_PAGSEGURO_EMAIL}&token=${process.env.REACT_APP_PAGSEGURO_TOKEN}`,
-        xmlBody,
-        {
-          headers: {
-            'Content-Type': 'application/xml',
+    api
+      .post('pagSeguro', {
+        checkout: {
+          sender: {
+            name: `${user?.firstName} ${user?.lastName}`,
+            email: `${user?.email}`,
           },
+        },
+        itens: [
+          {
+            id: idCourse,
+            description: course.name,
+            amount: course.price.toFixed(2),
+          },
+        ],
+      })
+      .then((response) => {
+        if (response.status === 206) {
+          addToast(response.data, {
+            appearance: 'warning',
+            autoDismiss: true,
+          });
+          return;
         }
-      )
-      .then((res) => {
-        console.log(res);
+
+        const { code } = response.data;
+
+        util.clearAndSetCookie(constants.CODE_CHECKOUT_PAGSEGURO, code, 1);
+        util.clearAndSetCookie(
+          constants.COURSE_CHECKOUT_PAGSEGURO,
+          idCourse,
+          1
+        );
+        util.clearAndSetCookie(
+          constants.AMOUNT_CHECKOUT_PAGSEGURO,
+          course.price.toFixed(2),
+          1
+        );
+
+        window.location.href = `${constants.URL_PAYMENT_PAGSEGURO}${code}`;
       })
       .catch((err) => {
         console.log(err);
+        addToast(
+          'Houve algum erro inesperado ao solicitar a compra, tente novamente mais tarde',
+          {
+            appearance: 'error',
+            autoDismiss: true,
+          }
+        );
       });
   }
 

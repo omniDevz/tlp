@@ -65,7 +65,7 @@ const util = {
     var d = new Date();
     d.setTime(d.getTime() - (1000*60*60*24));
     var expires = "expires=" + d.toUTCString();
-    window.document.cookie = name+"="+"; "+expires;
+    window.document.cookie = `${name}=;${expires}`;
   },
   clearAndSetCookie(name: string, value: string, hours: number) {
     util.deleteCookie(name);

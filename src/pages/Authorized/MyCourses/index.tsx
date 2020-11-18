@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useToasts } from 'react-toast-notifications';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import Button from '../../../components/Button';
 import FormField from '../../../components/FormField';
@@ -9,8 +9,9 @@ import RadioButton from '../../../components/RadioButton';
 import CardCourse from './components/CardCourse';
 
 import { useAuth } from '../../../contexts/auth';
-import util from '../../../utils/util';
 import api from '../../../services/api';
+import util from '../../../utils/util';
+import constants from '../../../constants';
 
 import { ButtonWrapper, HeaderFilter, ListCard } from './styled';
 
@@ -20,10 +21,80 @@ const Course: React.FC = () => {
   const [search, setSearch] = useState('');
   const [typeSearch, setTypeSearch] = useState('');
   const [listCourse, setListCourse] = useState<ICourse[]>([]);
+  const [courseBuy, setCourseBuy] = useState(false);
 
   const { addToast } = useToasts();
   const { user } = useAuth();
+
   const history = useHistory();
+  const query = new URLSearchParams(useLocation().search);
+  const idTransaction = query.get('idTransaction');
+
+  const idCourse = util.getCookie(constants.COURSE_CHECKOUT_PAGSEGURO);
+  const amountCourse = util.getCookie(constants.AMOUNT_CHECKOUT_PAGSEGURO);
+
+  function handleSetNewCourseInStudent() {
+    if (
+      !user?.studentId ||
+      !idCourse ||
+      !amountCourse ||
+      !idTransaction ||
+      !listCourse ||
+      !courseBuy
+    )
+      return;
+    setCourseBuy(true);
+
+    if (
+      !!listCourse.filter((course) => course.courseId === Number(idCourse))
+        .length
+    )
+      return;
+
+    api
+      .post('venda', {
+        alunoId: user?.studentId,
+        dataHora: new Date(Date.now()).toJSON(),
+        codigo: idTransaction,
+        ultimoUsuarioAlteracao: user?.personId,
+        vendaDetalhe: [
+          {
+            cursoId: idCourse,
+            valor: amountCourse,
+            ultimoUsuarioAlteracao: user?.personId,
+          },
+        ],
+      })
+      .then((response) => {
+        if (response.status === 206) {
+          addToast(response.data, {
+            appearance: 'error',
+            autoDismiss: true,
+          });
+          return;
+        }
+
+        util.deleteCookie(constants.CODE_CHECKOUT_PAGSEGURO);
+        util.deleteCookie(constants.COURSE_CHECKOUT_PAGSEGURO);
+        util.deleteCookie(constants.AMOUNT_CHECKOUT_PAGSEGURO);
+
+        addToast('Curso adquirido com sucesso! Boas aulas!', {
+          appearance: 'info',
+          autoDismiss: true,
+        });
+        handleGetCoursesFromApi();
+      })
+      .catch((err) => {
+        console.log(err);
+        addToast(
+          'Houve algum erro inesperado ao solicitar a compra, tente novamente mais tarde',
+          {
+            appearance: 'error',
+            autoDismiss: true,
+          }
+        );
+      });
+  }
 
   function handleGetNewCourse() {
     history.push('/course');
@@ -84,6 +155,13 @@ const Course: React.FC = () => {
   }
 
   useEffect(handleGetCoursesFromApi, [user]);
+  useEffect(handleSetNewCourseInStudent, [
+    user,
+    idCourse,
+    amountCourse,
+    idTransaction,
+    listCourse,
+  ]);
 
   return (
     <PageAuthorized type="back" text="Cursos adquiridos">

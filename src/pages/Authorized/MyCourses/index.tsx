@@ -30,26 +30,16 @@ const Course: React.FC = () => {
   const query = new URLSearchParams(useLocation().search);
   const idTransaction = query.get('idTransaction');
 
-  const idCourse = util.getCookie(constants.COURSE_CHECKOUT_PAGSEGURO);
-  const amountCourse = util.getCookie(constants.AMOUNT_CHECKOUT_PAGSEGURO);
+  const courses: ICourse[] = JSON.parse(
+    util.getCookie(constants.LIST_COURSE_CHECKOUT_PAGSEGURO) || '[]'
+  );
 
   function handleSetNewCourseInStudent() {
-    if (
-      !user?.studentId ||
-      !idCourse ||
-      !amountCourse ||
-      !idTransaction ||
-      !listCourse ||
-      !courseBuy
-    )
+    if (!user?.studentId || !courses?.length || !idTransaction || courseBuy)
       return;
     setCourseBuy(true);
 
-    if (
-      !!listCourse.filter((course) => course.courseId === Number(idCourse))
-        .length
-    )
-      return;
+    if (!courses.length) return;
 
     api
       .post('venda', {
@@ -57,13 +47,13 @@ const Course: React.FC = () => {
         dataHora: new Date(Date.now()).toJSON(),
         codigo: idTransaction,
         ultimoUsuarioAlteracao: user?.personId,
-        vendaDetalhe: [
-          {
-            cursoId: idCourse,
-            valor: amountCourse,
+        vendaDetalhe: courses.map((course) => {
+          return {
+            cursoId: course.courseId,
+            valor: course.price.toFixed(2),
             ultimoUsuarioAlteracao: user?.personId,
-          },
-        ],
+          };
+        }),
       })
       .then((response) => {
         if (response.status === 206) {
@@ -74,9 +64,7 @@ const Course: React.FC = () => {
           return;
         }
 
-        util.deleteCookie(constants.CODE_CHECKOUT_PAGSEGURO);
-        util.deleteCookie(constants.COURSE_CHECKOUT_PAGSEGURO);
-        util.deleteCookie(constants.AMOUNT_CHECKOUT_PAGSEGURO);
+        util.deleteCookie(constants.LIST_COURSE_CHECKOUT_PAGSEGURO);
 
         addToast('Curso adquirido com sucesso! Boas aulas!', {
           appearance: 'info',
@@ -85,7 +73,7 @@ const Course: React.FC = () => {
         handleGetCoursesFromApi();
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response);
         addToast(
           'Houve algum erro inesperado ao solicitar a compra, tente novamente mais tarde',
           {
@@ -157,8 +145,7 @@ const Course: React.FC = () => {
   useEffect(handleGetCoursesFromApi, [user]);
   useEffect(handleSetNewCourseInStudent, [
     user,
-    idCourse,
-    amountCourse,
+    courses,
     idTransaction,
     listCourse,
   ]);

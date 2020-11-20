@@ -5,6 +5,7 @@ import util from '../../../../../utils/util';
 
 import {
   CardCourseWrapper,
+  DetailCourse,
   Description,
   Infos,
   Props,
@@ -14,7 +15,11 @@ import {
 
 import { ICardCourse } from './interface';
 
-const CardCourse: React.FC<ICardCourse> = ({ course }) => {
+const CardCourse: React.FC<ICardCourse> = ({
+  course,
+  active,
+  handleCourseInListInBuy,
+}) => {
   const history = useHistory();
 
   function handleGoDetailCourse() {
@@ -25,7 +30,10 @@ const CardCourse: React.FC<ICardCourse> = ({ course }) => {
     course.price === 0 ? 'Grátis' : util.formatPrice(course.price * 100);
 
   return (
-    <CardCourseWrapper onClick={handleGoDetailCourse}>
+    <CardCourseWrapper
+      active={active}
+      onClick={() => handleCourseInListInBuy(course)}
+    >
       <Infos>
         <Title>{course.name}</Title>
         <Description>{course.description}</Description>
@@ -33,6 +41,10 @@ const CardCourse: React.FC<ICardCourse> = ({ course }) => {
       </Infos>
       <Props>
         <Price>{priceCourse}</Price>
+        <DetailCourse
+          title="Detalhes do curso"
+          onClick={handleGoDetailCourse}
+        />
       </Props>
     </CardCourseWrapper>
   );

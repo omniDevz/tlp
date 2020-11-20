@@ -1,6 +1,9 @@
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
+import { FiBook } from 'react-icons/fi';
 
-export const CardCourseWrapper = styled.li`
+import { ICardCourseWrapper } from './interface';
+
+export const CardCourseWrapper = styled.li<ICardCourseWrapper>`
   border: 2px solid ${(props) => props.theme.colors.secondary};
   padding: .8rem;
   display: flex;
@@ -16,6 +19,11 @@ export const CardCourseWrapper = styled.li`
   &:hover {
     transform: scale(.98);
   }
+
+  ${(props) => props.active && css`
+    border-color: ${(props) => props.theme.colors.primary};
+    transform: scale(.98);
+  `}
 `;
 
 export const Infos = styled.div`
@@ -47,3 +55,14 @@ export const Price = styled(Description)`
   margin-bottom: .8rem;
 `;
 
+export const DetailCourse = styled(FiBook)`
+  color: ${(props) => props.theme.colors.secondary};
+  width: 4rem;
+  height: 4rem;
+  transform: scale(1);
+  transition: all 320ms ease-in-out;
+
+  &:hover {
+    transform: scale(.9);
+  }
+`;

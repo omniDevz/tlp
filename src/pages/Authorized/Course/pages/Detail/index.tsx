@@ -122,13 +122,8 @@ const Detail: React.FC = () => {
 
         util.clearAndSetCookie(constants.CODE_CHECKOUT_PAGSEGURO, code, 1);
         util.clearAndSetCookie(
-          constants.COURSE_CHECKOUT_PAGSEGURO,
-          idCourse,
-          1
-        );
-        util.clearAndSetCookie(
-          constants.AMOUNT_CHECKOUT_PAGSEGURO,
-          course.price.toFixed(2),
+          constants.LIST_COURSE_CHECKOUT_PAGSEGURO,
+          JSON.stringify([course]),
           1
         );
 
@@ -152,7 +147,7 @@ const Detail: React.FC = () => {
     api
       .post('movCursoAluno', {
         alunoId: user?.studentId,
-        cursoId: idCourse,
+        cursoIds: [idCourse],
       })
       .then((response) => {
         if (response.status === 206) {

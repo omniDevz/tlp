@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useToasts } from 'react-toast-notifications';
 
 import Button from '../../../../../components/Button';
@@ -13,10 +13,10 @@ import api from '../../../../../services/api';
 import { ClassesWrapper, ButtonsWrapper, ClassStream } from './styled';
 
 import {
-  IClass,
   ICourseDetailParams,
-  ICourseDetail,
   ICourseApiDetail,
+  ICourseDetail,
+  IClass,
 } from './interface';
 
 const Detail: React.FC = () => {
@@ -28,9 +28,9 @@ const Detail: React.FC = () => {
   const { addToast } = useToasts();
   const { user } = useAuth();
 
-  function handleGetCourseFromApi() {
-    console.log(idMyCourse);
+  const history = useHistory();
 
+  function handleGetCourseFromApi() {
     if (!user?.studentId) return;
 
     api
@@ -86,6 +86,10 @@ const Detail: React.FC = () => {
 
   useEffect(handleGetCourseFromApi, [user, idMyCourse]);
 
+  function handleGoDetailCourse() {
+    history.push(`/course/${course.courseId}`);
+  }
+
   return (
     <PageAuthorized type="back" text={course.name}>
       <ClassStream src={!!classActive.link ? classActive.link : ''} />
@@ -101,7 +105,7 @@ const Detail: React.FC = () => {
           ))}
       </ClassesWrapper>
       <ButtonsWrapper>
-        <Button color="primary-outline" onClick={() => {}}>
+        <Button color="primary-outline" onClick={handleGoDetailCourse}>
           Detalhes do curso
         </Button>
       </ButtonsWrapper>

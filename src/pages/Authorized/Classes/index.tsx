@@ -47,10 +47,9 @@ const Classes: React.FC = () => {
         console.log(data);
         const classFromApi: ClassProps[] = data.map((c: ClassApiProps) => {
           const newClass: ClassProps = {
-            classId: c.turma.turmaId,
-            name: c.turma.nome,
-            description: c.turma.descricao,
-            quizzes: c.quantidadeQuizRealizados,
+            classId: c.turmaId,
+            name: c.nome,
+            description: c.descricao,
             students: c.quantidadeAlunos,
           };
 
@@ -96,16 +95,12 @@ const Classes: React.FC = () => {
         {listClasses &&
           listClasses
             .filter((className) => handleFilterClasses(className))
-            .map(({ classId, name, description, quizzes, students }) => (
+            .map(({ classId, name, description, students }) => (
               <ItemClass key={classId}>
                 <Descriptions>
                   <Name>{name}</Name>
                   <Information>{description}</Information>
                   <TwoColumns>
-                    <Information>
-                      <b>{quizzes}</b> quizzes realizados
-                    </Information>
-                    |
                     <Information>
                       <b>{students}</b> alunos
                     </Information>

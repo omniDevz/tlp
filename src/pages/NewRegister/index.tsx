@@ -52,19 +52,19 @@ function NewRegister() {
           });
           return false;
         }
-        if (!util.emptyValue(values.dateOfBirth, 'id_dateOfBirth')) {
+        if (!util.emptyValue(values.birthDate, 'id_birthDate')) {
           addToast('Preencha a data de aniversário', {
             appearance: 'warning',
             autoDismiss: true,
           });
           return false;
         }
-        if (!validation.dateMinToDay(values.dateOfBirth)) {
+        if (!validation.dateMinToDay(values.birthDate)) {
           addToast('A data deve ser inferior ao dia de hoje', {
             appearance: 'warning',
             autoDismiss: true,
           });
-          document.getElementById('id_dateOfBirth')?.focus();
+          document.getElementById('id_birthDate')?.focus();
           return false;
         }
         if (!util.emptyValue(values.email, 'id_email')) {

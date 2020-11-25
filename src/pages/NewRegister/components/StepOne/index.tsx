@@ -1,16 +1,17 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 import FormField from '../../../../components/FormField';
 
 import backgroundNewRegister from '../../../../assets/images/backgroundNewRegister.svg';
 
 import {
-  Form,
+  ButtonWrapper,
+  TwoFields,
   Fieldset,
   Legend,
-  ButtonWrapper,
   Button,
-  TwoFields,
+  Form,
 } from './styled';
 
 import { StepOneProps } from './interface';
@@ -20,6 +21,12 @@ const StepOne: React.FC<StepOneProps> = ({
   handleChange,
   handleStep,
 }) => {
+  const history = useHistory();
+
+  function handleGoBack() {
+    history.goBack();
+  }
+
   return (
     <Form
       background={backgroundNewRegister}
@@ -73,7 +80,7 @@ const StepOne: React.FC<StepOneProps> = ({
         <Button onClick={() => handleStep(1, 2)} color="primary">
           Continuar
         </Button>
-        <Button onClick={() => handleStep(1, 0)} color="primary-outline">
+        <Button onClick={handleGoBack} color="primary-outline">
           Cancelar
         </Button>
       </ButtonWrapper>

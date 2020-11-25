@@ -27,7 +27,7 @@ function NewRegister() {
     password: '',
     passwordConfirmation: '',
   };
-  const [step, setStep] = useState<0 | 1 | 2 | 3>(0);
+  const [step, setStep] = useState<0 | 1 | 2 | 3>(1);
   const [registerConfirm] = useState<Boolean>(false);
 
   const { handleChange, values } = useForm(valuesInitials);
